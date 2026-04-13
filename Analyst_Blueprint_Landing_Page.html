@@ -1,0 +1,1083 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Analyst Blueprint — data_with_k</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Mono:wght@400;500&family=Sora:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --ink:        #0A0F1E;
+    --ink-soft:   #2D3550;
+    --mid:        #64748B;
+    --rule:       #E2E8F0;
+    --bg:         #F8F9FC;
+    --white:      #FFFFFF;
+    --blue:       #1B4FD8;
+    --blue-light: #EEF3FF;
+    --blue-mid:   #DBEAFE;
+    --gold:       #B45309;
+    --gold-light: #FEF3C7;
+    --green:      #0D6B4F;
+    --green-light:#ECFDF5;
+    --red:        #DC2626;
+  }
+
+  html { font-size: 16px; scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Sora', sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(28px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50%       { opacity: 0.5; }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 16px 48px;
+    background: rgba(248,249,252,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .nav-brand {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--ink);
+    letter-spacing: 0.06em;
+  }
+  .nav-brand span { color: var(--blue); }
+
+  .nav-links {
+    display: flex; gap: 32px; align-items: center;
+    list-style: none;
+  }
+  .nav-links a {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--mid);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--ink); }
+
+  .nav-cta {
+    background: var(--ink) !important;
+    color: var(--white) !important;
+    padding: 8px 20px;
+    font-size: 12px !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.04em;
+    transition: background 0.2s !important;
+  }
+  .nav-cta:hover { background: var(--blue) !important; color: var(--white) !important; }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 120px 48px 80px;
+    max-width: 960px;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  .hero-tag {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--blue);
+    margin-bottom: 24px;
+    animation: fadeUp 0.6s ease both;
+  }
+
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(42px, 6vw, 72px);
+    font-weight: 700;
+    line-height: 1.08;
+    color: var(--ink);
+    margin-bottom: 8px;
+    animation: fadeUp 0.6s ease 0.1s both;
+  }
+
+  .hero-title em {
+    font-style: italic;
+    color: var(--blue);
+  }
+
+  .hero-sub {
+    font-size: clamp(16px, 2vw, 20px);
+    font-weight: 300;
+    color: var(--mid);
+    line-height: 1.7;
+    max-width: 560px;
+    margin: 24px 0 48px;
+    animation: fadeUp 0.6s ease 0.2s both;
+  }
+
+  .hero-sub strong {
+    color: var(--ink-soft);
+    font-weight: 500;
+  }
+
+  .hero-actions {
+    display: flex; gap: 16px; flex-wrap: wrap;
+    animation: fadeUp 0.6s ease 0.3s both;
+  }
+
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--ink);
+    color: var(--white);
+    padding: 16px 32px;
+    font-family: 'Sora', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .btn-primary:hover { background: var(--blue); transform: translateY(-1px); }
+  .btn-primary .arrow { transition: transform 0.2s; }
+  .btn-primary:hover .arrow { transform: translateX(4px); }
+
+  .btn-secondary {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: transparent;
+    color: var(--ink);
+    padding: 16px 32px;
+    font-family: 'Sora', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    border: 1.5px solid var(--ink);
+    transition: background 0.2s, color 0.2s;
+  }
+  .btn-secondary:hover { background: var(--ink); color: var(--white); }
+
+  .hero-proof {
+    margin-top: 56px;
+    display: flex; gap: 40px; flex-wrap: wrap;
+    animation: fadeUp 0.6s ease 0.4s both;
+  }
+
+  .proof-item {
+    display: flex; flex-direction: column; gap: 2px;
+  }
+  .proof-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--ink);
+    line-height: 1;
+  }
+  .proof-label {
+    font-size: 12px;
+    color: var(--mid);
+    font-weight: 400;
+  }
+
+  /* ── SECTION BASE ── */
+  section {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 96px 48px;
+  }
+
+  .section-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--blue);
+    margin-bottom: 16px;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(28px, 4vw, 42px);
+    font-weight: 700;
+    line-height: 1.15;
+    color: var(--ink);
+    margin-bottom: 16px;
+  }
+  .section-title em { font-style: italic; color: var(--blue); }
+
+  .section-body {
+    font-size: 16px;
+    font-weight: 300;
+    color: var(--mid);
+    line-height: 1.75;
+    max-width: 560px;
+    margin-bottom: 48px;
+  }
+
+  /* ── PROBLEM SECTION ── */
+  .problem { background: var(--ink); color: var(--white); max-width: 100%; padding: 80px 0; }
+  .problem-inner { max-width: 960px; margin: 0 auto; padding: 0 48px; }
+
+  .problem-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1px;
+    background: rgba(255,255,255,0.08);
+    margin-top: 48px;
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+
+  .problem-card {
+    background: var(--ink);
+    padding: 36px 32px;
+    transition: background 0.2s;
+  }
+  .problem-card:hover { background: #141929; }
+
+  .problem-num {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: rgba(255,255,255,0.25);
+    letter-spacing: 0.1em;
+    margin-bottom: 16px;
+  }
+
+  .problem-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 12px;
+    line-height: 1.3;
+  }
+
+  .problem-body {
+    font-size: 14px;
+    font-weight: 300;
+    color: rgba(255,255,255,0.55);
+    line-height: 1.65;
+  }
+
+  .problem-label { color: rgba(255,255,255,0.35); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; font-family: 'IBM Plex Mono', monospace; }
+
+  /* ── SCENARIO BLOCK ── */
+  .scenario {
+    background: var(--white);
+    border: 1.5px solid var(--rule);
+    padding: 40px 44px;
+    margin: 48px 0;
+    position: relative;
+  }
+  .scenario::before {
+    content: '"';
+    font-family: 'Playfair Display', serif;
+    font-size: 120px;
+    color: var(--blue-mid);
+    position: absolute;
+    top: -20px; left: 28px;
+    line-height: 1;
+    pointer-events: none;
+  }
+
+  .scenario-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--blue);
+    margin-bottom: 20px;
+  }
+
+  .scenario-weak {
+    font-size: 14px;
+    color: var(--red);
+    font-weight: 500;
+    margin-bottom: 8px;
+    text-decoration: line-through;
+    opacity: 0.7;
+  }
+
+  .scenario-strong {
+    font-size: 15px;
+    color: var(--green);
+    font-weight: 500;
+    line-height: 1.7;
+    padding: 16px 20px;
+    background: var(--green-light);
+    border-left: 3px solid var(--green);
+    margin-bottom: 16px;
+  }
+
+  .scenario-result {
+    font-size: 13px;
+    color: var(--mid);
+    font-style: italic;
+    line-height: 1.6;
+  }
+
+  /* ── WHAT SECTION ── */
+  .what-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    background: var(--rule);
+    border: 1px solid var(--rule);
+    margin-top: 48px;
+  }
+
+  .what-card {
+    background: var(--white);
+    padding: 36px 32px;
+    transition: background 0.15s;
+  }
+  .what-card:hover { background: var(--blue-light); }
+
+  .what-icon {
+    font-size: 22px;
+    margin-bottom: 14px;
+  }
+
+  .what-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 8px;
+  }
+
+  .what-body {
+    font-size: 13.5px;
+    font-weight: 300;
+    color: var(--mid);
+    line-height: 1.65;
+  }
+
+  .what-tag {
+    display: inline-block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--blue);
+    background: var(--blue-light);
+    padding: 3px 8px;
+    margin-bottom: 12px;
+  }
+
+  /* ── DIVIDER ── */
+  .divider {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 48px;
+    border: none;
+    border-top: 1px solid var(--rule);
+  }
+
+  /* ── FREE KIT SECTION ── */
+  .free-section {
+    background: var(--gold-light);
+    max-width: 100%;
+    padding: 80px 0;
+    border-top: 3px solid var(--gold);
+    border-bottom: 3px solid var(--gold);
+  }
+  .free-inner { max-width: 960px; margin: 0 auto; padding: 0 48px; }
+
+  .free-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: center;
+    margin-top: 40px;
+  }
+
+  .free-includes { display: flex; flex-direction: column; gap: 14px; }
+
+  .free-item {
+    display: flex; gap: 14px; align-items: flex-start;
+    padding: 14px 16px;
+    background: rgba(255,255,255,0.6);
+    border: 1px solid rgba(180,83,9,0.15);
+  }
+
+  .free-item-icon {
+    font-size: 16px;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .free-item-text {
+    font-size: 13.5px;
+    color: var(--ink-soft);
+    line-height: 1.55;
+  }
+  .free-item-text strong { font-weight: 600; display: block; margin-bottom: 2px; }
+
+  .free-cta-box {
+    background: var(--white);
+    border: 1.5px solid var(--gold);
+    padding: 36px 32px;
+    text-align: center;
+  }
+
+  .free-price {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 8px;
+  }
+
+  .free-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 12px;
+    line-height: 1.2;
+  }
+
+  .free-desc {
+    font-size: 13px;
+    font-weight: 300;
+    color: var(--mid);
+    line-height: 1.6;
+    margin-bottom: 24px;
+  }
+
+  .btn-gold {
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    width: 100%;
+    background: var(--gold);
+    color: var(--white);
+    padding: 14px 24px;
+    font-family: 'Sora', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    text-decoration: none;
+    transition: background 0.2s;
+  }
+  .btn-gold:hover { background: #92400E; }
+
+  /* ── PAID PRODUCT SECTION ── */
+  .paid-section {
+    background: var(--ink);
+    max-width: 100%;
+    padding: 96px 0;
+  }
+  .paid-inner { max-width: 960px; margin: 0 auto; padding: 0 48px; }
+
+  .paid-header {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 48px;
+    align-items: start;
+    margin-bottom: 64px;
+  }
+
+  .paid-label { color: rgba(255,255,255,0.35); font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; margin-bottom: 16px; }
+
+  .paid-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(28px, 4vw, 42px);
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1.1;
+    margin-bottom: 16px;
+  }
+  .paid-title em { font-style: italic; color: #93C5FD; }
+
+  .paid-sub {
+    font-size: 15px;
+    font-weight: 300;
+    color: rgba(255,255,255,0.55);
+    line-height: 1.7;
+    max-width: 480px;
+  }
+
+  .price-box {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.12);
+    padding: 32px;
+    text-align: center;
+    min-width: 200px;
+    flex-shrink: 0;
+  }
+
+  .price-amount {
+    font-family: 'Playfair Display', serif;
+    font-size: 48px;
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+
+  .price-note {
+    font-size: 11px;
+    color: rgba(255,255,255,0.35);
+    font-family: 'IBM Plex Mono', monospace;
+    letter-spacing: 0.08em;
+    margin-bottom: 20px;
+  }
+
+  .btn-white {
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    width: 100%;
+    background: var(--white);
+    color: var(--ink);
+    padding: 13px 20px;
+    font-family: 'Sora', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    text-decoration: none;
+    transition: background 0.2s, color 0.2s;
+  }
+  .btn-white:hover { background: #93C5FD; color: var(--ink); }
+
+  .modules-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1px;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .module-card {
+    background: #0D1220;
+    padding: 28px 24px;
+    transition: background 0.2s;
+  }
+  .module-card:hover { background: #141929; }
+
+  .module-num {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    color: #93C5FD;
+    margin-bottom: 10px;
+  }
+
+  .module-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--white);
+    margin-bottom: 8px;
+    line-height: 1.3;
+  }
+
+  .module-body {
+    font-size: 12.5px;
+    font-weight: 300;
+    color: rgba(255,255,255,0.45);
+    line-height: 1.6;
+  }
+
+  /* ── SKILL PREVIEW ── */
+  .skill-preview {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.08);
+    padding: 32px;
+    margin-top: 48px;
+  }
+
+  .skill-preview-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.3);
+    margin-bottom: 20px;
+  }
+
+  .skill-row-preview {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    align-items: start;
+  }
+
+  .skill-col-title {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.3);
+    margin-bottom: 10px;
+    font-family: 'IBM Plex Mono', monospace;
+  }
+
+  .skill-col-body {
+    font-size: 13px;
+    font-weight: 300;
+    color: rgba(255,255,255,0.65);
+    line-height: 1.65;
+  }
+
+  /* ── OBJECTIONS ── */
+  .obj-grid { display: flex; flex-direction: column; gap: 0; margin-top: 40px; }
+
+  .obj-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    border-bottom: 1px solid var(--rule);
+    overflow: hidden;
+  }
+  .obj-row:first-child { border-top: 1px solid var(--rule); }
+
+  .obj-q {
+    padding: 24px 28px;
+    background: var(--white);
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--ink-soft);
+    line-height: 1.5;
+    border-right: 1px solid var(--rule);
+  }
+
+  .obj-a {
+    padding: 24px 28px;
+    background: var(--bg);
+    font-size: 13.5px;
+    font-weight: 300;
+    color: var(--mid);
+    line-height: 1.65;
+  }
+
+  /* ── FINAL CTA ── */
+  .final-cta {
+    background: var(--ink);
+    max-width: 100%;
+    padding: 96px 0;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .final-cta::before {
+    content: '';
+    position: absolute;
+    top: -100px; left: 50%; transform: translateX(-50%);
+    width: 600px; height: 400px;
+    background: radial-gradient(circle, rgba(27,79,216,0.15) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .final-inner { max-width: 640px; margin: 0 auto; padding: 0 48px; position: relative; }
+
+  .final-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(28px, 4vw, 44px);
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1.1;
+    margin-bottom: 20px;
+  }
+  .final-title em { font-style: italic; color: #93C5FD; }
+
+  .final-body {
+    font-size: 15px;
+    font-weight: 300;
+    color: rgba(255,255,255,0.55);
+    line-height: 1.75;
+    margin-bottom: 40px;
+  }
+
+  .final-actions {
+    display: flex; flex-direction: column; gap: 12px; align-items: center;
+  }
+
+  .final-note {
+    font-size: 12px;
+    color: rgba(255,255,255,0.25);
+    font-family: 'IBM Plex Mono', monospace;
+    letter-spacing: 0.06em;
+    margin-top: 16px;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #060A14;
+    padding: 32px 48px;
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 16px;
+  }
+
+  .footer-brand {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    color: rgba(255,255,255,0.3);
+  }
+  .footer-brand span { color: rgba(255,255,255,0.6); }
+
+  .footer-links {
+    display: flex; gap: 24px;
+    list-style: none;
+  }
+  .footer-links a {
+    font-size: 12px;
+    color: rgba(255,255,255,0.3);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .footer-links a:hover { color: rgba(255,255,255,0.7); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    nav { padding: 14px 24px; }
+    .nav-links { display: none; }
+    section { padding: 64px 24px; }
+    .hero { padding: 100px 24px 64px; }
+    .problem-grid, .what-grid, .modules-grid { grid-template-columns: 1fr; }
+    .free-grid, .paid-header, .skill-row-preview, .obj-row { grid-template-columns: 1fr; }
+    .paid-header { gap: 32px; }
+    footer { padding: 24px; flex-direction: column; align-items: flex-start; }
+    .problem-inner, .free-inner, .paid-inner { padding: 0 24px; }
+    .final-inner { padding: 0 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-brand">analyst<span>blueprint</span> · <span style="color:var(--mid)">data_with_k</span></div>
+  <ul class="nav-links">
+    <li><a href="#problem">The problem</a></li>
+    <li><a href="#free">Free edition</a></li>
+    <li><a href="#os">Full OS</a></li>
+    <li><a href="#os" class="nav-cta">Get started →</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div style="background:var(--white);">
+<div class="hero">
+  <div class="hero-tag">Analyst Blueprint · data_with_k</div>
+  <h1 class="hero-title">
+    From technical skills<br>to <em>business-ready</em><br>analyst.
+  </h1>
+  <p class="hero-sub">
+    Most courses teach you the tools.<br>
+    <strong>Nobody teaches you what to do with them.</strong><br>
+    The Analyst Blueprint closes that gap.
+  </p>
+  <div class="hero-actions">
+    <a href="#os" class="btn-primary">Get the full OS — €49 <span class="arrow">→</span></a>
+    <a href="#free" class="btn-secondary">Free edition first</a>
+  </div>
+  <div class="hero-proof">
+    <div class="proof-item">
+      <span class="proof-num">6</span>
+      <span class="proof-label">connected systems</span>
+    </div>
+    <div class="proof-item">
+      <span class="proof-num">10</span>
+      <span class="proof-label">skills that get you hired</span>
+    </div>
+    <div class="proof-item">
+      <span class="proof-num">€0</span>
+      <span class="proof-label">to start</span>
+    </div>
+    <div class="proof-item">
+      <span class="proof-num">€49</span>
+      <span class="proof-label">full system, once</span>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- PROBLEM -->
+<div class="problem" id="problem">
+<div class="problem-inner">
+  <div class="section-label" style="color:rgba(255,255,255,0.35);">The problem</div>
+  <h2 class="section-title" style="color:var(--white);max-width:560px;">
+    You have been learning.<br>
+    <em style="color:#93C5FD;">But something is not clicking.</em>
+  </h2>
+  <div class="problem-grid reveal">
+    <div class="problem-card">
+      <div class="problem-num">01</div>
+      <div class="problem-title">Scattered learning</div>
+      <div class="problem-body">Course after course, no clear sense of whether what you're learning is what hiring managers actually test for. Progress feels invisible.</div>
+    </div>
+    <div class="problem-card">
+      <div class="problem-num">02</div>
+      <div class="problem-title">Work that isn't visible</div>
+      <div class="problem-body">You have skills, maybe some projects — but no structure connecting them into something a recruiter can read and understand in 15 seconds.</div>
+    </div>
+    <div class="problem-card">
+      <div class="problem-num">03</div>
+      <div class="problem-title">Applications going nowhere</div>
+      <div class="problem-body">The problem was never your skills. It was presenting them the wrong way, to the wrong people, without a system to learn from each attempt.</div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- SCENARIO -->
+<div style="background:var(--white);">
+<section>
+  <div class="section-label">What changes</div>
+  <h2 class="section-title">The answer that <em>changes the room.</em></h2>
+  <p class="section-body">Every skill in the Analyst Blueprint teaches you not just the technique — but the business thinking behind it. Here is what that looks like in practice.</p>
+
+  <div class="scenario reveal">
+    <div class="scenario-label">Real scenario — Business Metrics & KPIs</div>
+    <div class="scenario-weak">Weak answer: "CAC is up this quarter."</div>
+    <div class="scenario-strong">
+      "Our LTV is €180 and CAC is €95 — a 1.9 ratio, below the healthy threshold of 3.<br><br>
+      At current CAC, customers need to place 2.3 orders to break even. Our repeat purchase rate is 1.6.<br><br>
+      We are acquiring customers at a loss."
+    </div>
+    <div class="scenario-result">That answer changed the marketing budget allocation for the next quarter. Knowing the metric is the technical skill. Knowing what it means for the business is what gets you into those rooms.</div>
+  </div>
+
+  <div class="what-grid reveal" style="margin-top:64px;" id="what">
+    <div class="what-card">
+      <div class="what-tag">Every skill includes</div>
+      <div class="what-icon">📖</div>
+      <div class="what-title">Exercise + practice</div>
+      <div class="what-body">Active recall exercises built into every skill — not course quizzes, real business scenarios you work through from memory.</div>
+    </div>
+    <div class="what-card">
+      <div class="what-tag">Every skill includes</div>
+      <div class="what-icon">🎯</div>
+      <div class="what-title">Your takeaway</div>
+      <div class="what-body">What this skill gives you and how you use it day-to-day. So you always know why you are learning what you are learning.</div>
+    </div>
+    <div class="what-card">
+      <div class="what-tag">Every skill includes</div>
+      <div class="what-icon">🔗</div>
+      <div class="what-title">Linked resources</div>
+      <div class="what-body">The specific courses, tutorials, and references worth your time. No searching. No weeks lost on the wrong content.</div>
+    </div>
+    <div class="what-card">
+      <div class="what-tag">Every skill includes</div>
+      <div class="what-icon">💼</div>
+      <div class="what-title">Real scenario</div>
+      <div class="what-body">A business situation showing exactly how a professional analyst uses this skill in a meeting, a report, or a stakeholder conversation.</div>
+    </div>
+  </div>
+</section>
+</div>
+
+<!-- FREE KIT -->
+<div class="free-section" id="free">
+<div class="free-inner">
+  <div class="section-label" style="color:var(--gold);">Start here — it's free</div>
+  <h2 class="section-title" style="color:var(--ink);">Data Analyst Blueprint<br><em style="color:var(--gold);">Free Edition</em></h2>
+  <p class="section-body" style="color:var(--gold);opacity:0.8;">The three things most analysts spend months trying to figure out on their own — answered in one free guide.</p>
+
+  <div class="free-grid reveal">
+    <div class="free-includes">
+      <div class="free-item">
+        <div class="free-item-icon">→</div>
+        <div class="free-item-text">
+          <strong>The 10 skills that actually get you hired</strong>
+          In priority order. With a one-line reason why each one matters to a hiring manager.
+        </div>
+      </div>
+      <div class="free-item">
+        <div class="free-item-icon">→</div>
+        <div class="free-item-text">
+          <strong>The 5-question progress check</strong>
+          An honest read on whether you are building transferable skills or just completing courses.
+        </div>
+      </div>
+      <div class="free-item">
+        <div class="free-item-icon">→</div>
+        <div class="free-item-text">
+          <strong>The job-ready checklist</strong>
+          The specific things a hiring manager checks in the first 30 seconds — portfolio, CV, interview readiness.
+        </div>
+      </div>
+      <div class="free-item">
+        <div class="free-item-icon">→</div>
+        <div class="free-item-text">
+          <strong>The business thinking standard</strong>
+          The question that separates analysts from order-takers: can you say what decision your analysis supports?
+        </div>
+      </div>
+    </div>
+
+    <div class="free-cta-box">
+      <div class="free-price">Free — no credit card</div>
+      <div class="free-title">Data Analyst Blueprint<br>Free Edition</div>
+      <div class="free-desc">Use it before you open your next course. Use it before you submit your next application. The 10 minutes it takes will save you weeks.</div>
+      <a href="#" class="btn-gold">Download free guide →</a>
+      <div style="font-size:11px;color:var(--gold);opacity:0.6;margin-top:12px;font-family:'IBM Plex Mono',monospace;letter-spacing:0.06em;">PDF · Instant download · Free forever</div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- PAID OS -->
+<div class="paid-section" id="os">
+<div class="paid-inner">
+  <div class="paid-header reveal">
+    <div>
+      <div class="paid-label">The full system</div>
+      <h2 class="paid-title">Analyst Blueprint <em>OS</em></h2>
+      <p class="paid-sub">Not a course. Not a tracker. A complete Notion workflow that connects your learning, projects, portfolio, and job search — with AI tools and business thinking built into every step.</p>
+    </div>
+    <div class="price-box">
+      <div class="price-amount">€49</div>
+      <div class="price-note">one-time · yours to keep</div>
+      <a href="#" class="btn-white">Get instant access →</a>
+      <div style="font-size:10px;color:rgba(255,255,255,0.2);margin-top:12px;font-family:'IBM Plex Mono',monospace;letter-spacing:0.06em;">No subscription. No upsells.</div>
+    </div>
+  </div>
+
+  <div class="modules-grid reveal">
+    <div class="module-card">
+      <div class="module-num">MODULE 01</div>
+      <div class="module-title">Learning Path</div>
+      <div class="module-body">Structured roadmap with linked resources, practice exercises, and business takeaways for every skill. Learn in order. Apply immediately.</div>
+    </div>
+    <div class="module-card">
+      <div class="module-num">MODULE 02</div>
+      <div class="module-title">AI Analyst Edge</div>
+      <div class="module-body">8 prompt templates, copilot integration guides, automation workflows, and a verification checklist system. Use AI professionally, not carelessly.</div>
+    </div>
+    <div class="module-card">
+      <div class="module-num">MODULE 03</div>
+      <div class="module-title">Project Portfolio</div>
+      <div class="module-body">Every skill links to a project. Every project has structure. Portfolio grows automatically as you publish. GitHub + Notion templates included.</div>
+    </div>
+    <div class="module-card">
+      <div class="module-num">MODULE 04</div>
+      <div class="module-title">Data Storytelling</div>
+      <div class="module-body">Storytelling templates and a project review system. Go from "I ran an analysis" to "I solved a business problem using data."</div>
+    </div>
+    <div class="module-card">
+      <div class="module-num">MODULE 05</div>
+      <div class="module-title">Interview Prep</div>
+      <div class="module-body">Job search built from the recruiter's perspective. Prepare each application the way a hiring manager reads it. Reflect after every rejection.</div>
+    </div>
+    <div class="module-card">
+      <div class="module-num">MODULE 06</div>
+      <div class="module-title">Soft Skills & Habits</div>
+      <div class="module-body">Track the invisible skills that determine how fast you grow — problem framing, communication, consistency. The things no course teaches.</div>
+    </div>
+  </div>
+
+  <div class="skill-preview reveal">
+    <div class="skill-preview-label">Inside every skill — example: Business Metrics & KPIs</div>
+    <div class="skill-row-preview">
+      <div>
+        <div class="skill-col-title">What this gives you</div>
+        <div class="skill-col-body">The business fluency to participate in any commercial conversation as an equal — not as someone who needs things explained to them. Business metrics are the language of every meeting you will ever attend.</div>
+      </div>
+      <div>
+        <div class="skill-col-title">Your exercise</div>
+        <div class="skill-col-body">Without Googling: write out 8 KPI definitions from memory. For each: plain English definition, the formula, what a bad number looks like, who in the company owns this metric. Score yourself honestly.</div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- OBJECTIONS -->
+<div style="background:var(--white);">
+<section>
+  <div class="section-label">Common questions</div>
+  <h2 class="section-title">Honest answers.</h2>
+
+  <div class="obj-grid reveal">
+    <div class="obj-row">
+      <div class="obj-q">Is this for complete beginners or people with some experience?</div>
+      <div class="obj-a">Both — but for different reasons. If you are a beginner, the structure tells you what to learn in what order and why. If you have experience, the system connects things you already know. The gap it closes is not knowledge — it is the architecture that turns knowledge into a career.</div>
+    </div>
+    <div class="obj-row">
+      <div class="obj-q">Do I need to use Notion already?</div>
+      <div class="obj-a">No. The template is built for someone who has never used Notion professionally. The first 7 days guide walks you through setup step by step, one action per day. Most users are running the system within a week.</div>
+    </div>
+    <div class="obj-row">
+      <div class="obj-q">How is this different from a course?</div>
+      <div class="obj-a">A course gives you content. The Blueprint gives you a system. The difference is that every part connects — learning links to projects, projects link to portfolio, portfolio links to job search. Nothing exists in isolation. Nothing gets lost.</div>
+    </div>
+    <div class="obj-row">
+      <div class="obj-q">What if I buy it and don't use it?</div>
+      <div class="obj-a">Start with the free edition. Work through all three pages honestly. If the quality of the free guide makes you want more — that is the signal. The paid OS is built to the same standard throughout.</div>
+    </div>
+  </div>
+</section>
+</div>
+
+<!-- FINAL CTA -->
+<div class="final-cta">
+<div class="final-inner reveal">
+  <h2 class="final-title">One system.<br><em>One clear path.</em></h2>
+  <p class="final-body">Six months from now, one of two things will be true. You will have a system that has moved you measurably closer to the analyst role you want — or you will be in roughly the same place, having learned more things with no clearer sense of whether any of it is working.</p>
+  <div class="final-actions">
+    <a href="#" class="btn-primary" style="width:100%;max-width:340px;justify-content:center;">Get the Analyst Blueprint OS — €49 →</a>
+    <a href="#free" class="btn-secondary" style="width:100%;max-width:340px;justify-content:center;border-color:rgba(255,255,255,0.2);color:rgba(255,255,255,0.6);">Start with the free edition</a>
+  </div>
+  <div class="final-note">€49 · one-time · no subscription · yours to keep</div>
+</div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand"><span>Analyst Blueprint</span> · data_with_k · Threads @data_with_k</div>
+  <ul class="footer-links">
+    <li><a href="#free">Free edition</a></li>
+    <li><a href="#os">Full OS</a></li>
+    <li><a href="https://threads.net/@data_with_k">Threads</a></li>
+  </ul>
+</footer>
+
+<script>
+  // Scroll reveal
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
