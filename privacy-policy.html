@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Privacy Policy — Analyst Blueprint</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Mono:wght@400;500&family=Sora:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --ink:        #0A0F1E;
+    --ink-soft:   #2D3550;
+    --mid:        #64748B;
+    --rule:       #E2E8F0;
+    --bg:         #F8F9FC;
+    --white:      #FFFFFF;
+    --blue:       #1B4FD8;
+    --blue-light: #EEF3FF;
+    --green:      #0D6B4F;
+    --green-light:#ECFDF5;
+  }
+
+  html { font-size: 16px; }
+  body {
+    font-family: 'Sora', sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.7;
+  }
+
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 16px 48px;
+    background: rgba(248,249,252,0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--rule);
+  }
+  .nav-brand {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px; font-weight: 500;
+    color: var(--ink); letter-spacing: 0.06em;
+    text-decoration: none;
+  }
+  .nav-brand span { color: var(--blue); }
+  .nav-back {
+    font-size: 13px; font-weight: 500;
+    color: var(--mid); text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-back:hover { color: var(--ink); }
+
+  .page-hero {
+    background: var(--ink);
+    padding: 120px 48px 64px;
+    text-align: center;
+  }
+  .page-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px; font-weight: 500;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    color: rgba(255,255,255,0.35); margin-bottom: 16px;
+  }
+  .page-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(28px, 4vw, 44px);
+    font-weight: 700; color: #fff; line-height: 1.1;
+    margin-bottom: 12px;
+  }
+  .page-title em { font-style: italic; color: #93C5FD; }
+  .page-date {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px; color: rgba(255,255,255,0.25);
+    letter-spacing: 0.1em;
+  }
+
+  .content {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 72px 48px 96px;
+  }
+
+  .section-block {
+    margin-bottom: 56px;
+    padding-bottom: 56px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .section-block:last-child { border-bottom: none; margin-bottom: 0; }
+
+  .section-num {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px; font-weight: 500;
+    letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--blue); margin-bottom: 8px;
+  }
+
+  .section-heading {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px; font-weight: 700;
+    color: var(--ink); line-height: 1.2;
+    margin-bottom: 20px;
+  }
+
+  .section-body {
+    font-size: 14.5px; font-weight: 300;
+    color: var(--ink-soft); line-height: 1.8;
+    margin-bottom: 16px;
+  }
+  .section-body:last-child { margin-bottom: 0; }
+
+  .info-box {
+    background: var(--blue-light);
+    border-left: 3px solid var(--blue);
+    padding: 16px 20px;
+    margin: 16px 0;
+    border-radius: 0 4px 4px 0;
+  }
+  .info-box p {
+    font-size: 13.5px; font-weight: 400;
+    color: var(--ink-soft); line-height: 1.7;
+  }
+  .info-box strong { font-weight: 600; }
+
+  .green-box {
+    background: var(--green-light);
+    border-left: 3px solid var(--green);
+    padding: 16px 20px;
+    margin: 16px 0;
+    border-radius: 0 4px 4px 0;
+  }
+  .green-box p {
+    font-size: 13.5px; font-weight: 400;
+    color: #065F46; line-height: 1.7;
+  }
+
+  .list-items {
+    display: flex; flex-direction: column; gap: 8px;
+    margin: 12px 0;
+  }
+  .list-item {
+    display: flex; gap: 12px; align-items: baseline;
+    font-size: 14px; font-weight: 300;
+    color: var(--ink-soft); line-height: 1.65;
+  }
+  .list-item::before {
+    content: '→';
+    color: var(--blue);
+    font-size: 13px;
+    flex-shrink: 0;
+    font-weight: 500;
+  }
+
+  .rights-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    background: var(--rule);
+    border: 1px solid var(--rule);
+    margin: 20px 0;
+  }
+
+  .right-card {
+    background: var(--white);
+    padding: 20px 20px;
+  }
+
+  .right-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 4px;
+  }
+
+  .right-body {
+    font-size: 12.5px;
+    font-weight: 300;
+    color: var(--mid);
+    line-height: 1.55;
+  }
+
+  .email-link {
+    color: var(--blue);
+    text-decoration: none;
+    font-weight: 500;
+  }
+  .email-link:hover { text-decoration: underline; }
+
+  footer {
+    background: #060A14;
+    padding: 32px 48px;
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 16px;
+  }
+  .footer-brand {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px; color: rgba(255,255,255,0.3);
+  }
+  .footer-brand span { color: rgba(255,255,255,0.6); }
+  .footer-links { display: flex; gap: 24px; list-style: none; }
+  .footer-links a {
+    font-size: 12px; color: rgba(255,255,255,0.3);
+    text-decoration: none; transition: color 0.2s;
+  }
+  .footer-links a:hover { color: rgba(255,255,255,0.7); }
+
+  @media (max-width: 768px) {
+    nav { padding: 14px 24px; }
+    .page-hero { padding: 100px 24px 48px; }
+    .content { padding: 48px 24px 72px; }
+    .rights-grid { grid-template-columns: 1fr; }
+    footer { padding: 24px; flex-direction: column; align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-brand">analyst<span>blueprint</span> · <span style="color:#64748B">data_with_k</span></a>
+  <a href="index.html" class="nav-back">← Back to home</a>
+</nav>
+
+<div class="page-hero">
+  <div class="page-label">Legal</div>
+  <h1 class="page-title">Privacy <em>Policy</em></h1>
+  <div class="page-date">Last updated — 2025 · GDPR compliant · French law</div>
+</div>
+
+<div class="content">
+
+  <!-- 1. Data Controller -->
+  <div class="section-block">
+    <div class="section-num">01</div>
+    <h2 class="section-heading">Data Controller</h2>
+    <p class="section-body">
+      The data controller responsible for personal data processing is:
+    </p>
+    <div class="info-box">
+      <p>
+        <strong>Name:</strong> Kamilya Madimar<br>
+        <strong>Legal Status:</strong> Micro-entrepreneur (France)<br>
+        <strong>Email:</strong> <a href="mailto:data_with_k@outlook.com" class="email-link">data_with_k@outlook.com</a>
+      </p>
+    </div>
+  </div>
+
+  <!-- 2. Payment Processing -->
+  <div class="section-block">
+    <div class="section-num">02</div>
+    <h2 class="section-heading">Payment Processing</h2>
+    <p class="section-body">
+      All payments and order processing are handled by Lemon Squeezy, a third-party payment provider. When a purchase is made, the following customer information is collected and processed directly by Lemon Squeezy and its payment partners:
+    </p>
+    <div class="list-items">
+      <div class="list-item">Name</div>
+      <div class="list-item">Email address</div>
+      <div class="list-item">Billing information</div>
+      <div class="list-item">Payment details</div>
+    </div>
+    <div class="green-box" style="margin-top:16px;">
+      <p>Sensitive payment data such as credit card numbers is never stored or processed by Kamilya Madimar. All payment data is handled exclusively by Lemon Squeezy and its certified payment partners.</p>
+    </div>
+  </div>
+
+  <!-- 3. Personal Data Access -->
+  <div class="section-block">
+    <div class="section-num">03</div>
+    <h2 class="section-heading">Personal Data Access</h2>
+    <p class="section-body">
+      Kamilya Madimar may have access to limited customer information provided through Lemon Squeezy, specifically:
+    </p>
+    <div class="list-items">
+      <div class="list-item">Customer email address</div>
+      <div class="list-item">Order confirmation details</div>
+    </div>
+    <p class="section-body" style="margin-top:12px;">
+      This information is used solely to provide access to the purchased digital product, respond to customer support requests, and manage order-related communication. No additional personal data is collected independently.
+    </p>
+  </div>
+
+  <!-- 4. Purpose of Data Processing -->
+  <div class="section-block">
+    <div class="section-num">04</div>
+    <h2 class="section-heading">Purpose of Data Processing</h2>
+    <p class="section-body">Personal information is used only for:</p>
+    <div class="list-items">
+      <div class="list-item">Delivering purchased digital products</div>
+      <div class="list-item">Responding to customer inquiries and support requests</div>
+      <div class="list-item">Fulfilling legal or accounting obligations under French law</div>
+    </div>
+    <p class="section-body" style="margin-top:12px;">
+      Personal data is never sold, rented, or shared with third parties for marketing purposes.
+    </p>
+  </div>
+
+  <!-- 5. Data Retention -->
+  <div class="section-block">
+    <div class="section-num">05</div>
+    <h2 class="section-heading">Data Retention</h2>
+    <p class="section-body">
+      Customer data is retained only as long as necessary for order management and legal obligations, in accordance with applicable French and European regulations.
+    </p>
+    <p class="section-body">
+      Payment-related data is retained according to the policies of Lemon Squeezy. You may consult Lemon Squeezy's privacy policy for further details on their data retention practices.
+    </p>
+  </div>
+
+  <!-- 6. Third-Party Services -->
+  <div class="section-block">
+    <div class="section-num">06</div>
+    <h2 class="section-heading">Third-Party Services</h2>
+    <p class="section-body">
+      The following third-party service is used in connection with this product:
+    </p>
+    <div class="info-box">
+      <p>
+        <strong>Lemon Squeezy</strong> — Payment processing and order management.<br>
+        Users may consult <a href="https://www.lemonsqueezy.com/privacy" class="email-link" target="_blank" rel="noopener">Lemon Squeezy's privacy policy</a> for further details on how payment and billing information is processed.
+      </p>
+    </div>
+  </div>
+
+  <!-- 7. Your Rights (GDPR) -->
+  <div class="section-block">
+    <div class="section-num">07</div>
+    <h2 class="section-heading">Your Rights under GDPR</h2>
+    <p class="section-body">
+      Under the General Data Protection Regulation (GDPR), you have the following rights regarding your personal data:
+    </p>
+    <div class="rights-grid">
+      <div class="right-card">
+        <div class="right-title">Right of Access</div>
+        <div class="right-body">Request a copy of the personal data held about you.</div>
+      </div>
+      <div class="right-card">
+        <div class="right-title">Right to Rectification</div>
+        <div class="right-body">Request correction of inaccurate or incomplete data.</div>
+      </div>
+      <div class="right-card">
+        <div class="right-title">Right to Erasure</div>
+        <div class="right-body">Request deletion of your personal data where applicable.</div>
+      </div>
+      <div class="right-card">
+        <div class="right-title">Right to Restriction</div>
+        <div class="right-body">Request that processing of your data be restricted.</div>
+      </div>
+      <div class="right-card">
+        <div class="right-title">Right to Object</div>
+        <div class="right-body">Object to the processing of your data in certain circumstances.</div>
+      </div>
+      <div class="right-card">
+        <div class="right-title">Right to Portability</div>
+        <div class="right-body">Request your data in a portable, machine-readable format.</div>
+      </div>
+    </div>
+    <p class="section-body">
+      To exercise any of these rights, please send your request to:
+    </p>
+    <div class="info-box">
+      <p><a href="mailto:data_with_k@outlook.com" class="email-link">data_with_k@outlook.com</a><br>
+      Requests will be handled within 30 days in accordance with GDPR requirements.</p>
+    </div>
+  </div>
+
+  <!-- 8. Data Security -->
+  <div class="section-block">
+    <div class="section-num">08</div>
+    <h2 class="section-heading">Data Security</h2>
+    <p class="section-body">
+      Reasonable technical and organisational measures are taken to protect personal data from unauthorised access, disclosure, alteration, or destruction.
+    </p>
+    <p class="section-body">
+      Payment security is ensured by Lemon Squeezy, which uses industry-standard encryption and security protocols for all financial transactions.
+    </p>
+  </div>
+
+  <!-- 9. Contact -->
+  <div class="section-block">
+    <div class="section-num">09</div>
+    <h2 class="section-heading">Contact</h2>
+    <p class="section-body">
+      For any questions about this Privacy Policy or how your personal data is handled, please contact:
+    </p>
+    <div class="info-box">
+      <p>
+        <strong>Kamilya Madimar</strong><br>
+        <a href="mailto:data_with_k@outlook.com" class="email-link">data_with_k@outlook.com</a>
+      </p>
+    </div>
+    <p class="section-body">
+      If you believe your data protection rights have been violated, you also have the right to lodge a complaint with the French data protection authority, the <a href="https://www.cnil.fr" class="email-link" target="_blank" rel="noopener">CNIL (Commission Nationale de l'Informatique et des Libertés)</a>.
+    </p>
+  </div>
+
+</div>
+
+<footer>
+  <div class="footer-brand"><span>Analyst Blueprint</span> · data_with_k · Threads @data_with_k</div>
+  <ul class="footer-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="terms-of-service.html">Terms &amp; Conditions</a></li>
+    <li><a href="https://threads.net/@data_with_k" target="_blank" rel="noopener noreferrer">Threads</a></li>
+  </ul>
+</footer>
+
+</body>
+</html>
