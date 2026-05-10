@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Data Analyst Blueprint — data_with_k</title>
+<title>Data Analyst Blueprint — Become Business-Ready | data_with_k</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Mono:wght@400;500&family=Sora:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -24,30 +24,24 @@
     --green:      #0D6B4F;
     --green-light:#ECFDF5;
     --red:        #DC2626;
+    --red-light:  #FEF2F2;
+    --teal:       #0D7A6F;
+    --teal-light: #E6F5F3;
   }
 
   html { font-size: 16px; scroll-behavior: smooth; }
 
   body {
     font-family: 'Sora', sans-serif;
-    background: var(--bg);
+    background: var(--white);
     color: var(--ink);
     line-height: 1.6;
     overflow-x: hidden;
   }
 
-  /* ── ANIMATIONS ── */
   @keyframes fadeUp {
     from { opacity: 0; transform: translateY(28px); }
     to   { opacity: 1; transform: translateY(0); }
-  }
-  @keyframes fadeIn {
-    from { opacity: 0; }
-    to   { opacity: 1; }
-  }
-  @keyframes pulse {
-    0%, 100% { opacity: 1; }
-    50%       { opacity: 0.5; }
   }
 
   .reveal {
@@ -66,17 +60,15 @@
     z-index: 100;
     display: flex; align-items: center; justify-content: space-between;
     padding: 16px 48px;
-    background: rgba(248,249,252,0.92);
+    background: rgba(255,255,255,0.95);
     backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--rule);
   }
 
   .nav-brand {
     font-family: 'IBM Plex Mono', monospace;
-    font-size: 13px;
-    font-weight: 500;
-    color: var(--ink);
-    letter-spacing: 0.06em;
+    font-size: 13px; font-weight: 500;
+    color: var(--ink); letter-spacing: 0.06em;
   }
   .nav-brand span { color: var(--blue); }
 
@@ -85,10 +77,8 @@
     list-style: none;
   }
   .nav-links a {
-    font-size: 13px;
-    font-weight: 500;
-    color: var(--mid);
-    text-decoration: none;
+    font-size: 13px; font-weight: 500;
+    color: var(--mid); text-decoration: none;
     transition: color 0.2s;
   }
   .nav-links a:hover { color: var(--ink); }
@@ -97,93 +87,79 @@
     background: var(--ink) !important;
     color: var(--white) !important;
     padding: 8px 20px;
-    font-size: 12px !important;
-    font-weight: 600 !important;
+    font-size: 12px !important; font-weight: 600 !important;
     letter-spacing: 0.04em;
     transition: background 0.2s !important;
   }
-  .nav-cta:hover { background: var(--blue) !important; color: var(--white) !important; }
+  .nav-cta:hover { background: var(--blue) !important; }
 
   /* ── HERO ── */
   .hero {
     min-height: 100vh;
     display: flex; flex-direction: column; justify-content: center;
     padding: 120px 48px 80px;
-    max-width: 960px;
-    margin: 0 auto;
-    position: relative;
+    max-width: 960px; margin: 0 auto;
   }
 
-  .hero-tag {
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--blue-light);
+    border: 1px solid var(--blue-mid);
+    padding: 5px 14px; margin-bottom: 28px;
+    animation: fadeUp 0.5s ease both;
+  }
+  .hero-badge-dot { width: 6px; height: 6px; background: var(--blue); border-radius: 50%; }
+  .hero-badge-text {
     font-family: 'IBM Plex Mono', monospace;
-    font-size: 11px;
-    font-weight: 500;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
+    font-size: 10px; font-weight: 500;
+    letter-spacing: 0.14em; text-transform: uppercase;
     color: var(--blue);
-    margin-bottom: 24px;
-    animation: fadeUp 0.6s ease both;
   }
 
   .hero-title {
     font-family: 'Playfair Display', serif;
-    font-size: clamp(42px, 6vw, 72px);
-    font-weight: 700;
-    line-height: 1.08;
-    color: var(--ink);
-    margin-bottom: 8px;
-    animation: fadeUp 0.6s ease 0.1s both;
+    font-size: clamp(40px, 6vw, 70px);
+    font-weight: 700; line-height: 1.06;
+    color: var(--ink); margin-bottom: 8px;
+    animation: fadeUp 0.5s ease 0.08s both;
   }
-
-  .hero-title em {
-    font-style: italic;
-    color: var(--blue);
+  .hero-title em { font-style: italic; color: var(--blue); }
+  .hero-title .strike {
+    text-decoration: line-through;
+    color: var(--mid); font-weight: 300;
   }
 
   .hero-sub {
-    font-size: clamp(16px, 2vw, 20px);
-    font-weight: 300;
-    color: var(--mid);
-    line-height: 1.7;
-    max-width: 560px;
-    margin: 24px 0 48px;
-    animation: fadeUp 0.6s ease 0.2s both;
+    font-size: clamp(15px, 1.8vw, 18px);
+    font-weight: 300; color: var(--mid);
+    line-height: 1.75; max-width: 540px;
+    margin: 20px 0 44px;
+    animation: fadeUp 0.5s ease 0.16s both;
   }
-
-  .hero-sub strong {
-    color: var(--ink-soft);
-    font-weight: 500;
-  }
+  .hero-sub strong { color: var(--ink-soft); font-weight: 500; }
 
   .hero-actions {
-    display: flex; gap: 16px; flex-wrap: wrap;
-    animation: fadeUp 0.6s ease 0.3s both;
+    display: flex; gap: 14px; flex-wrap: wrap;
+    animation: fadeUp 0.5s ease 0.24s both;
   }
 
   .btn-primary {
     display: inline-flex; align-items: center; gap: 8px;
-    background: var(--ink);
-    color: var(--white);
+    background: var(--ink); color: var(--white);
     padding: 16px 32px;
     font-family: 'Sora', sans-serif;
-    font-size: 14px;
-    font-weight: 600;
-    letter-spacing: 0.02em;
-    text-decoration: none;
+    font-size: 14px; font-weight: 600;
+    letter-spacing: 0.02em; text-decoration: none;
     transition: background 0.2s, transform 0.15s;
   }
   .btn-primary:hover { background: var(--blue); transform: translateY(-1px); }
-  .btn-primary .arrow { transition: transform 0.2s; }
-  .btn-primary:hover .arrow { transform: translateX(4px); }
 
   .btn-secondary {
     display: inline-flex; align-items: center; gap: 8px;
-    background: transparent;
-    color: var(--ink);
+    background: transparent; color: var(--ink);
     padding: 16px 32px;
     font-family: 'Sora', sans-serif;
-    font-size: 14px;
-    font-weight: 500;
+    font-size: 14px; font-weight: 500;
     text-decoration: none;
     border: 1.5px solid var(--ink);
     transition: background 0.2s, color 0.2s;
@@ -191,546 +167,393 @@
   .btn-secondary:hover { background: var(--ink); color: var(--white); }
 
   .hero-proof {
-    margin-top: 56px;
+    margin-top: 52px;
     display: flex; gap: 40px; flex-wrap: wrap;
-    animation: fadeUp 0.6s ease 0.4s both;
+    padding-top: 36px;
+    border-top: 1px solid var(--rule);
+    animation: fadeUp 0.5s ease 0.32s both;
   }
-
-  .proof-item {
-    display: flex; flex-direction: column; gap: 2px;
-  }
+  .proof-item { display: flex; flex-direction: column; gap: 2px; }
   .proof-num {
     font-family: 'Playfair Display', serif;
-    font-size: 28px;
-    font-weight: 700;
-    color: var(--ink);
-    line-height: 1;
+    font-size: 28px; font-weight: 700;
+    color: var(--ink); line-height: 1;
   }
-  .proof-label {
-    font-size: 12px;
-    color: var(--mid);
-    font-weight: 400;
-  }
+  .proof-label { font-size: 11px; color: var(--mid); }
 
-  /* ── SECTION BASE ── */
-  section {
-    max-width: 960px;
-    margin: 0 auto;
-    padding: 96px 48px;
-  }
+  /* ── PAIN SECTION ── */
+  .pain-section { background: var(--ink); padding: 80px 0; }
+  .pain-inner { max-width: 960px; margin: 0 auto; padding: 0 48px; }
 
-  .section-label {
+  .section-tag {
     font-family: 'IBM Plex Mono', monospace;
-    font-size: 11px;
-    font-weight: 500;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    color: var(--blue);
-    margin-bottom: 16px;
+    font-size: 10px; font-weight: 500;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    color: rgba(255,255,255,0.3); margin-bottom: 14px;
   }
+  .section-tag.blue { color: var(--blue); }
 
-  .section-title {
+  .section-h {
     font-family: 'Playfair Display', serif;
-    font-size: clamp(28px, 4vw, 42px);
-    font-weight: 700;
-    line-height: 1.15;
-    color: var(--ink);
-    margin-bottom: 16px;
+    font-size: clamp(26px, 3.5vw, 40px);
+    font-weight: 700; line-height: 1.15;
+    color: var(--white); margin-bottom: 14px;
   }
-  .section-title em { font-style: italic; color: var(--blue); }
+  .section-h em { font-style: italic; color: #93C5FD; }
+  .section-h.dark { color: var(--ink); }
+  .section-h.dark em { color: var(--blue); }
 
-  .section-body {
-    font-size: 16px;
-    font-weight: 300;
-    color: var(--mid);
-    line-height: 1.75;
-    max-width: 560px;
-    margin-bottom: 48px;
+  .section-p {
+    font-size: 15px; font-weight: 300;
+    color: rgba(255,255,255,0.5); line-height: 1.75;
+    max-width: 520px; margin-bottom: 48px;
   }
+  .section-p.dark { color: var(--mid); }
 
-  /* ── PROBLEM SECTION ── */
-  .problem { background: var(--ink); color: var(--white); max-width: 100%; padding: 80px 0; }
-  .problem-inner { max-width: 960px; margin: 0 auto; padding: 0 48px; }
-
-  .problem-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+  .pain-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
     gap: 1px;
-    background: rgba(255,255,255,0.08);
-    margin-top: 48px;
-    border: 1px solid rgba(255,255,255,0.08);
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.06);
   }
-
-  .problem-card {
-    background: var(--ink);
-    padding: 36px 32px;
+  .pain-card {
+    background: #0D1220; padding: 32px 28px;
     transition: background 0.2s;
   }
-  .problem-card:hover { background: #141929; }
-
-  .problem-num {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 11px;
-    color: rgba(255,255,255,0.25);
-    letter-spacing: 0.1em;
-    margin-bottom: 16px;
-  }
-
-  .problem-title {
+  .pain-card:hover { background: #141929; }
+  .pain-icon { font-size: 22px; margin-bottom: 14px; }
+  .pain-title {
     font-family: 'Playfair Display', serif;
-    font-size: 20px;
-    font-weight: 700;
-    color: var(--white);
-    margin-bottom: 12px;
-    line-height: 1.3;
+    font-size: 18px; font-weight: 700;
+    color: var(--white); margin-bottom: 10px; line-height: 1.3;
+  }
+  .pain-body {
+    font-size: 13.5px; font-weight: 300;
+    color: rgba(255,255,255,0.5); line-height: 1.65;
+  }
+  .pain-quote {
+    font-size: 12px; color: rgba(255,255,255,0.25);
+    font-style: italic; margin-top: 12px;
+    padding-top: 10px;
+    border-top: 1px solid rgba(255,255,255,0.06);
   }
 
-  .problem-body {
-    font-size: 14px;
-    font-weight: 300;
-    color: rgba(255,255,255,0.55);
-    line-height: 1.65;
+  /* ── MECHANISM ── */
+  .mechanism { max-width: 960px; margin: 0 auto; padding: 96px 48px; }
+
+  .mech-compare {
+    border: 1.5px solid var(--rule);
+    overflow: hidden; margin-top: 40px;
   }
+  .mech-header {
+    display: grid; grid-template-columns: 1fr 1fr;
+    background: var(--ink);
+  }
+  .mech-header-cell {
+    padding: 10px 18px;
+    font-size: 10px; font-weight: 600;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: rgba(255,255,255,0.5);
+    font-family: 'IBM Plex Mono', monospace;
+  }
+  .mech-header-cell:first-child { border-right: 1px solid rgba(255,255,255,0.1); }
+  .mech-row {
+    display: grid; grid-template-columns: 1fr 1fr;
+    border-bottom: 1px solid var(--rule);
+  }
+  .mech-row:last-child { border-bottom: none; }
+  .mech-col {
+    padding: 14px 18px;
+    font-size: 13px; line-height: 1.55;
+  }
+  .mech-col.bad {
+    background: var(--red-light); color: var(--red);
+    border-right: 1px solid var(--rule);
+  }
+  .mech-col.bad::before { content: '✗  '; font-weight: 700; }
+  .mech-col.good { background: var(--teal-light); color: var(--teal); }
+  .mech-col.good::before { content: '✓  '; font-weight: 700; }
 
-  .problem-label { color: rgba(255,255,255,0.35); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; font-family: 'IBM Plex Mono', monospace; }
+  /* ── SCENARIO ── */
+  .scenario-section { max-width: 960px; margin: 0 auto; padding: 0 48px 96px; }
 
-  /* ── SCENARIO BLOCK ── */
   .scenario {
     background: var(--white);
     border: 1.5px solid var(--rule);
-    padding: 40px 44px;
-    margin: 48px 0;
+    padding: 40px 44px; margin: 40px 0;
     position: relative;
   }
   .scenario::before {
     content: '"';
     font-family: 'Playfair Display', serif;
-    font-size: 120px;
-    color: var(--blue-mid);
-    position: absolute;
-    top: -20px; left: 28px;
-    line-height: 1;
-    pointer-events: none;
+    font-size: 120px; color: var(--blue-mid);
+    position: absolute; top: -20px; left: 28px;
+    line-height: 1; pointer-events: none;
   }
-
   .scenario-label {
     font-family: 'IBM Plex Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    color: var(--blue);
+    font-size: 10px; letter-spacing: 0.16em;
+    text-transform: uppercase; color: var(--blue);
     margin-bottom: 20px;
   }
-
   .scenario-weak {
-    font-size: 14px;
-    color: var(--red);
-    font-weight: 500;
-    margin-bottom: 8px;
-    text-decoration: line-through;
-    opacity: 0.7;
+    font-size: 14px; color: var(--red);
+    font-weight: 500; margin-bottom: 8px;
+    text-decoration: line-through; opacity: 0.7;
   }
-
   .scenario-strong {
-    font-size: 15px;
-    color: var(--green);
-    font-weight: 500;
-    line-height: 1.7;
-    padding: 16px 20px;
+    font-size: 15px; color: var(--green); font-weight: 500;
+    line-height: 1.7; padding: 16px 20px;
     background: var(--green-light);
-    border-left: 3px solid var(--green);
-    margin-bottom: 16px;
+    border-left: 3px solid var(--green); margin-bottom: 16px;
   }
-
   .scenario-result {
-    font-size: 13px;
-    color: var(--mid);
-    font-style: italic;
-    line-height: 1.6;
+    font-size: 13px; color: var(--mid);
+    font-style: italic; line-height: 1.6;
   }
 
-  /* ── WHAT SECTION ── */
-  .what-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2px;
-    background: var(--rule);
-    border: 1px solid var(--rule);
-    margin-top: 48px;
-  }
-
-  .what-card {
-    background: var(--white);
-    padding: 36px 32px;
-    transition: background 0.15s;
-  }
-  .what-card:hover { background: var(--blue-light); }
-
-  .what-icon {
-    font-size: 22px;
-    margin-bottom: 14px;
-  }
-
-  .what-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 18px;
-    font-weight: 700;
-    color: var(--ink);
-    margin-bottom: 8px;
-  }
-
-  .what-body {
-    font-size: 13.5px;
-    font-weight: 300;
-    color: var(--mid);
-    line-height: 1.65;
-  }
-
-  .what-tag {
-    display: inline-block;
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--blue);
-    background: var(--blue-light);
-    padding: 3px 8px;
-    margin-bottom: 12px;
-  }
-
-  /* ── DIVIDER ── */
-  .divider {
-    max-width: 960px;
-    margin: 0 auto;
-    padding: 0 48px;
-    border: none;
-    border-top: 1px solid var(--rule);
-  }
-
-  /* ── FREE KIT SECTION ── */
-  .free-section {
-    background: var(--gold-light);
-    max-width: 100%;
-    padding: 80px 0;
-    border-top: 3px solid var(--gold);
-    border-bottom: 3px solid var(--gold);
-  }
-  .free-inner { max-width: 960px; margin: 0 auto; padding: 0 48px; }
-
-  .free-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 48px;
-    align-items: center;
-    margin-top: 40px;
-  }
-
-  .free-includes { display: flex; flex-direction: column; gap: 14px; }
-
-  .free-item {
-    display: flex; gap: 14px; align-items: flex-start;
-    padding: 14px 16px;
-    background: rgba(255,255,255,0.6);
-    border: 1px solid rgba(180,83,9,0.15);
-  }
-
-  .free-item-icon {
-    font-size: 16px;
-    flex-shrink: 0;
-    margin-top: 2px;
-  }
-
-  .free-item-text {
-    font-size: 13.5px;
-    color: var(--ink-soft);
-    line-height: 1.55;
-  }
-  .free-item-text strong { font-weight: 600; display: block; margin-bottom: 2px; }
-
-  .free-cta-box {
-    background: var(--white);
-    border: 1.5px solid var(--gold);
-    padding: 36px 32px;
-    text-align: center;
-  }
-
-  .free-price {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 11px;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 8px;
-  }
-
-  .free-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 22px;
-    font-weight: 700;
-    color: var(--ink);
-    margin-bottom: 12px;
-    line-height: 1.2;
-  }
-
-  .free-desc {
-    font-size: 13px;
-    font-weight: 300;
-    color: var(--mid);
-    line-height: 1.6;
-    margin-bottom: 24px;
-  }
-
-  .btn-gold {
-    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
-    width: 100%;
-    background: var(--gold);
-    color: var(--white);
-    padding: 14px 24px;
-    font-family: 'Sora', sans-serif;
-    font-size: 13px;
-    font-weight: 600;
-    letter-spacing: 0.03em;
-    text-decoration: none;
-    transition: background 0.2s;
-  }
-  .btn-gold:hover { background: #92400E; }
-
-  /* ── PAID PRODUCT SECTION ── */
-  .paid-section {
-    background: var(--ink);
-    max-width: 100%;
-    padding: 96px 0;
-  }
-  .paid-inner { max-width: 960px; margin: 0 auto; padding: 0 48px; }
-
-  .paid-header {
-    display: grid;
-    grid-template-columns: 1fr auto;
-    gap: 48px;
-    align-items: start;
-    margin-bottom: 64px;
-  }
-
-  .paid-label { color: rgba(255,255,255,0.35); font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; margin-bottom: 16px; }
-
-  .paid-title {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(28px, 4vw, 42px);
-    font-weight: 700;
-    color: var(--white);
-    line-height: 1.1;
-    margin-bottom: 16px;
-  }
-  .paid-title em { font-style: italic; color: #93C5FD; }
-
-  .paid-sub {
-    font-size: 15px;
-    font-weight: 300;
-    color: rgba(255,255,255,0.55);
-    line-height: 1.7;
-    max-width: 480px;
-  }
-
-  .price-box {
-    background: rgba(255,255,255,0.04);
-    border: 1px solid rgba(255,255,255,0.12);
-    padding: 32px;
-    text-align: center;
-    min-width: 200px;
-    flex-shrink: 0;
-  }
-
-  .price-amount {
-    font-family: 'Playfair Display', serif;
-    font-size: 48px;
-    font-weight: 700;
-    color: var(--white);
-    line-height: 1;
-    margin-bottom: 4px;
-  }
-
-  .price-note {
-    font-size: 11px;
-    color: rgba(255,255,255,0.35);
-    font-family: 'IBM Plex Mono', monospace;
-    letter-spacing: 0.08em;
-    margin-bottom: 20px;
-  }
-
-  .btn-white {
-    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
-    width: 100%;
-    background: var(--white);
-    color: var(--ink);
-    padding: 13px 20px;
-    font-family: 'Sora', sans-serif;
-    font-size: 13px;
-    font-weight: 700;
-    letter-spacing: 0.02em;
-    text-decoration: none;
-    transition: background 0.2s, color 0.2s;
-  }
-  .btn-white:hover { background: #93C5FD; color: var(--ink); }
+  /* ── MODULES ── */
+  .modules-section { background: var(--bg); padding: 96px 0; }
+  .modules-inner { max-width: 960px; margin: 0 auto; padding: 0 48px; }
 
   .modules-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 1px;
-    background: rgba(255,255,255,0.06);
-    border: 1px solid rgba(255,255,255,0.06);
+    display: flex; flex-direction: column;
+    gap: 1px; background: var(--rule);
+    border: 1px solid var(--rule); margin-top: 48px;
   }
-
-  .module-card {
-    background: #0D1220;
-    padding: 28px 24px;
-    transition: background 0.2s;
+  .module-row {
+    display: grid; grid-template-columns: 200px 1fr 1fr;
+    background: var(--white); transition: background 0.15s;
   }
-  .module-card:hover { background: #141929; }
+  .module-row:hover { background: var(--blue-light); }
 
-  .module-num {
+  .mod-label {
+    padding: 26px 22px; border-right: 1px solid var(--rule);
+    display: flex; flex-direction: column; gap: 6px;
+  }
+  .mod-num {
     font-family: 'IBM Plex Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 0.12em;
-    color: #93C5FD;
-    margin-bottom: 10px;
+    font-size: 9px; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--mid);
   }
-
-  .module-title {
-    font-size: 14px;
-    font-weight: 600;
-    color: var(--white);
-    margin-bottom: 8px;
-    line-height: 1.3;
+  .mod-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 15px; font-weight: 700;
+    color: var(--ink); line-height: 1.2;
   }
-
-  .module-body {
-    font-size: 12.5px;
-    font-weight: 300;
-    color: rgba(255,255,255,0.45);
-    line-height: 1.6;
+  .mod-pain { padding: 26px 22px; border-right: 1px solid var(--rule); }
+  .mod-pain-label {
+    font-size: 9px; font-weight: 700;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--red); margin-bottom: 6px;
+    font-family: 'IBM Plex Mono', monospace;
+  }
+  .mod-pain-text {
+    font-size: 13px; color: var(--mid);
+    line-height: 1.55; font-style: italic;
+  }
+  .mod-solve { padding: 26px 22px; }
+  .mod-solve-label {
+    font-size: 9px; font-weight: 700;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--teal); margin-bottom: 6px;
+    font-family: 'IBM Plex Mono', monospace;
+  }
+  .mod-solve-text {
+    font-size: 13px; color: var(--ink-soft);
+    line-height: 1.55; font-weight: 500;
   }
 
   /* ── SKILL PREVIEW ── */
-  .skill-preview {
-    background: rgba(255,255,255,0.03);
-    border: 1px solid rgba(255,255,255,0.08);
-    padding: 32px;
-    margin-top: 48px;
-  }
+  .skill-preview-section { background: var(--white); padding: 96px 0; }
+  .skill-preview-inner { max-width: 960px; margin: 0 auto; padding: 0 48px; }
 
+  .skill-preview {
+    background: rgba(10,15,30,0.97);
+    padding: 36px; margin-top: 40px;
+  }
   .skill-preview-label {
     font-family: 'IBM Plex Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 0.14em;
+    font-size: 10px; letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: rgba(255,255,255,0.3);
-    margin-bottom: 20px;
+    color: rgba(255,255,255,0.3); margin-bottom: 20px;
   }
-
   .skill-row-preview {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 24px;
-    align-items: start;
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 1px; background: rgba(255,255,255,0.06);
   }
-
+  .skill-col { background: #0D1220; padding: 24px; }
   .skill-col-title {
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: rgba(255,255,255,0.3);
-    margin-bottom: 10px;
+    font-size: 10px; font-weight: 600;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: rgba(255,255,255,0.3); margin-bottom: 10px;
     font-family: 'IBM Plex Mono', monospace;
   }
-
   .skill-col-body {
-    font-size: 13px;
-    font-weight: 300;
-    color: rgba(255,255,255,0.65);
-    line-height: 1.65;
+    font-size: 13px; font-weight: 300;
+    color: rgba(255,255,255,0.65); line-height: 1.65;
+  }
+  .skill-example {
+    background: rgba(255,255,255,0.04);
+    border-left: 3px solid #93C5FD;
+    padding: 12px 14px; margin-top: 12px;
+  }
+  .skill-example-label {
+    font-size: 9px; color: rgba(255,255,255,0.25);
+    text-transform: uppercase; letter-spacing: 0.1em;
+    font-family: 'IBM Plex Mono', monospace; margin-bottom: 5px;
+  }
+  .skill-example-text {
+    font-size: 12px; color: rgba(255,255,255,0.5);
+    line-height: 1.6; font-style: italic;
   }
 
-  /* ── OBJECTIONS ── */
-  .obj-grid { display: flex; flex-direction: column; gap: 0; margin-top: 40px; }
+  /* ── FREE VS PAID ── */
+  .compare-section { background: var(--bg); padding: 96px 0; }
+  .compare-inner { max-width: 960px; margin: 0 auto; padding: 0 48px; }
 
-  .obj-row {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 0;
-    border-bottom: 1px solid var(--rule);
-    overflow: hidden;
+  .compare-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 2px; background: var(--rule);
+    border: 1px solid var(--rule); margin-top: 48px;
   }
-  .obj-row:first-child { border-top: 1px solid var(--rule); }
+  .compare-col { background: var(--white); padding: 36px 32px; }
+  .compare-col.paid { background: var(--ink); }
 
-  .obj-q {
-    padding: 24px 28px;
-    background: var(--white);
-    font-size: 14px;
-    font-weight: 500;
-    color: var(--ink-soft);
-    line-height: 1.5;
-    border-right: 1px solid var(--rule);
+  .compare-tag {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px; font-weight: 600;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .compare-tag.free { color: var(--gold); }
+  .compare-tag.paid { color: #93C5FD; }
+
+  .compare-price {
+    font-family: 'Playfair Display', serif;
+    font-size: 40px; font-weight: 700; line-height: 1;
+    margin-bottom: 6px;
+  }
+  .compare-price.free { color: var(--ink); }
+  .compare-price.paid { color: var(--white); }
+
+  .compare-name {
+    font-size: 15px; font-weight: 600; margin-bottom: 6px;
+  }
+  .compare-name.free { color: var(--ink); }
+  .compare-name.paid { color: var(--white); }
+
+  .compare-desc {
+    font-size: 13px; font-weight: 300;
+    line-height: 1.65; margin-bottom: 24px;
+  }
+  .compare-desc.free { color: var(--mid); }
+  .compare-desc.paid { color: rgba(255,255,255,0.5); }
+
+  .compare-items { display: flex; flex-direction: column; }
+  .compare-item {
+    display: flex; gap: 10px; align-items: baseline;
+    font-size: 13px; line-height: 1.55;
+    padding: 8px 0; border-bottom: 1px solid var(--rule);
+  }
+  .compare-item.paid-item { border-bottom-color: rgba(255,255,255,0.06); }
+  .compare-item:last-child { border-bottom: none; }
+  .compare-item::before { content: '→'; font-size: 11px; flex-shrink: 0; font-weight: 600; }
+  .compare-item.free-item::before { color: var(--gold); }
+  .compare-item.free-item { color: var(--ink-soft); }
+  .compare-item.paid-item::before { color: #93C5FD; }
+  .compare-item.paid-item { color: rgba(255,255,255,0.7); }
+
+  .compare-cta { margin-top: 28px; }
+  .btn-gold {
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    width: 100%; background: var(--gold); color: var(--white);
+    padding: 14px 24px; font-family: 'Sora', sans-serif;
+    font-size: 13px; font-weight: 600;
+    letter-spacing: 0.03em; text-decoration: none;
+    transition: background 0.2s;
+  }
+  .btn-gold:hover { background: #92400E; }
+  .btn-white {
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    width: 100%; background: var(--white); color: var(--ink);
+    padding: 14px 24px; font-family: 'Sora', sans-serif;
+    font-size: 13px; font-weight: 700;
+    letter-spacing: 0.02em; text-decoration: none;
+    transition: background 0.2s;
+  }
+  .btn-white:hover { background: #93C5FD; }
+  .compare-note {
+    font-size: 10px; color: rgba(255,255,255,0.2);
+    text-align: center; margin-top: 10px;
+    font-family: 'IBM Plex Mono', monospace;
+    letter-spacing: 0.06em;
   }
 
-  .obj-a {
-    padding: 24px 28px;
-    background: var(--bg);
-    font-size: 13.5px;
-    font-weight: 300;
-    color: var(--mid);
-    line-height: 1.65;
+  /* ── FAQ ── */
+  .faq-section { background: var(--white); padding: 96px 0; }
+  .faq-inner { max-width: 960px; margin: 0 auto; padding: 0 48px; }
+
+  .faq-grid { display: flex; flex-direction: column; margin-top: 40px; }
+  .faq-row { border-bottom: 1px solid var(--rule); }
+  .faq-row:first-child { border-top: 1px solid var(--rule); }
+  .faq-q {
+    display: grid; grid-template-columns: 1fr auto;
+    gap: 24px; padding: 22px 0;
+    cursor: pointer; align-items: center;
+  }
+  .faq-q-text {
+    font-size: 14px; font-weight: 500;
+    color: var(--ink); line-height: 1.4;
+  }
+  .faq-toggle {
+    width: 22px; height: 22px;
+    border: 1.5px solid var(--rule);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px; color: var(--mid); flex-shrink: 0;
+    transition: all 0.2s;
+  }
+  .faq-a {
+    font-size: 13.5px; font-weight: 300;
+    color: var(--mid); line-height: 1.75;
+    padding-bottom: 22px; display: none;
+  }
+  .faq-row.open .faq-a { display: block; }
+  .faq-row.open .faq-toggle {
+    background: var(--ink); border-color: var(--ink); color: white;
   }
 
   /* ── FINAL CTA ── */
   .final-cta {
     background: var(--ink);
-    max-width: 100%;
-    padding: 96px 0;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
+    padding: 96px 0; text-align: center;
+    position: relative; overflow: hidden;
   }
-
   .final-cta::before {
     content: '';
-    position: absolute;
-    top: -100px; left: 50%; transform: translateX(-50%);
+    position: absolute; top: -100px; left: 50%; transform: translateX(-50%);
     width: 600px; height: 400px;
     background: radial-gradient(circle, rgba(27,79,216,0.15) 0%, transparent 70%);
     pointer-events: none;
   }
-
   .final-inner { max-width: 640px; margin: 0 auto; padding: 0 48px; position: relative; }
-
   .final-title {
     font-family: 'Playfair Display', serif;
     font-size: clamp(28px, 4vw, 44px);
-    font-weight: 700;
-    color: var(--white);
-    line-height: 1.1;
-    margin-bottom: 20px;
+    font-weight: 700; color: var(--white);
+    line-height: 1.1; margin-bottom: 20px;
   }
   .final-title em { font-style: italic; color: #93C5FD; }
-
   .final-body {
-    font-size: 15px;
-    font-weight: 300;
-    color: rgba(255,255,255,0.55);
-    line-height: 1.75;
+    font-size: 15px; font-weight: 300;
+    color: rgba(255,255,255,0.55); line-height: 1.75;
     margin-bottom: 40px;
   }
-
-  .final-actions {
-    display: flex; flex-direction: column; gap: 12px; align-items: center;
-  }
-
+  .final-actions { display: flex; flex-direction: column; gap: 12px; align-items: center; }
   .final-note {
-    font-size: 12px;
-    color: rgba(255,255,255,0.25);
+    font-size: 12px; color: rgba(255,255,255,0.25);
     font-family: 'IBM Plex Mono', monospace;
-    letter-spacing: 0.06em;
-    margin-top: 16px;
+    letter-spacing: 0.06em; margin-top: 16px;
   }
 
   /* ── FOOTER ── */
@@ -740,23 +563,12 @@
     display: flex; justify-content: space-between; align-items: center;
     flex-wrap: wrap; gap: 16px;
   }
-
-  .footer-brand {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 12px;
-    color: rgba(255,255,255,0.3);
-  }
+  .footer-brand { font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: rgba(255,255,255,0.3); }
   .footer-brand span { color: rgba(255,255,255,0.6); }
-
-  .footer-links {
-    display: flex; gap: 24px;
-    list-style: none;
-  }
+  .footer-links { display: flex; gap: 24px; list-style: none; }
   .footer-links a {
-    font-size: 12px;
-    color: rgba(255,255,255,0.3);
-    text-decoration: none;
-    transition: color 0.2s;
+    font-size: 12px; color: rgba(255,255,255,0.3);
+    text-decoration: none; transition: color 0.2s;
   }
   .footer-links a:hover { color: rgba(255,255,255,0.7); }
 
@@ -764,14 +576,15 @@
   @media (max-width: 768px) {
     nav { padding: 14px 24px; }
     .nav-links { display: none; }
-    section { padding: 64px 24px; }
     .hero { padding: 100px 24px 64px; }
-    .problem-grid, .what-grid, .modules-grid { grid-template-columns: 1fr; }
-    .free-grid, .paid-header, .skill-row-preview, .obj-row { grid-template-columns: 1fr; }
-    .paid-header { gap: 32px; }
+    .pain-inner, .modules-inner, .skill-preview-inner,
+    .compare-inner, .faq-inner, .final-inner { padding: 0 24px; }
+    .mechanism, .scenario-section { padding-left: 24px; padding-right: 24px; }
+    .pain-grid, .compare-grid, .skill-row-preview,
+    .mech-row, .mech-header { grid-template-columns: 1fr; }
+    .module-row { grid-template-columns: 1fr; }
+    .mod-label, .mod-pain { border-right: none; border-bottom: 1px solid var(--rule); }
     footer { padding: 24px; flex-direction: column; align-items: flex-start; }
-    .problem-inner, .free-inner, .paid-inner { padding: 0 24px; }
-    .final-inner { padding: 0 24px; }
   }
 </style>
 </head>
@@ -781,275 +594,390 @@
 <nav>
   <div class="nav-brand">analyst<span>blueprint</span> · <span style="color:var(--mid)">data_with_k</span></div>
   <ul class="nav-links">
-    <li><a href="#problem">The problem</a></li>
-    <li><a href="#free">Free edition</a></li>
-    <li><a href="#os" class="nav-cta">Get Full Version →</a></li>
+    <li><a href="#pain">The problem</a></li>
+    <li><a href="#modules">What's inside</a></li>
+    <li><a href="#compare">Free vs paid</a></li>
+    <li><a href="#compare" class="nav-cta">Get Blueprint — €49.99 →</a></li>
   </ul>
 </nav>
 
-<!-- HERO -->
-<div style="background:var(--white);">
+<!-- ══ HERO ══ -->
+<div style="background:var(--white)">
 <div class="hero">
-  <div class="hero-tag">Data Analyst Blueprint · data_with_k</div>
-  <h1 class="hero-title">
-    From technical skills<br>to <em>business-ready</em><br>analyst.
-  </h1>
-  <p class="hero-sub">
-    Most courses teach you the tools.<br>
-    <strong>Nobody teaches you what to do with them.</strong><br>
-    Data Analyst Blueprint closes that gap.
-  </p>
-  <div class="hero-actions">
-    <a href="#os" class="btn-primary">Get the full version — €49.99 <span class="arrow">→</span></a>
-    <a href="#free" class="btn-secondary">Free edition first</a>
+  <div class="hero-badge">
+    <div class="hero-badge-dot"></div>
+    <div class="hero-badge-text">data_with_k · Built by a working data analyst · 7 years in the field</div>
   </div>
+
+  <h1 class="hero-title">
+    Become a <em>business-ready</em><br>
+    data analyst.<br>
+    <span class="strike">Not just someone</span><br>
+    <span class="strike">who knows the tools.</span>
+  </h1>
+
+  <p class="hero-sub">
+    Most courses teach SQL, Excel, and dashboards.<br>
+    <strong>The Analyst Blueprint helps you turn those skills into projects, business thinking, and interview-ready proof.</strong><br>
+    Free to start. Full system at €49.99.
+  </p>
+
+  <div class="hero-actions">
+    <a href="#compare" class="btn-primary">Try Phase 1 free →</a>
+    <a href="https://data-with-k.lemonsqueezy.com/checkout/buy/42714fbb-2e45-49a6-a171-7b6096028877" target="_blank" rel="noopener noreferrer" class="btn-secondary">Get the full Blueprint — €49.99</a>
+  </div>
+
   <div class="hero-proof">
     <div class="proof-item">
-      <span class="proof-num">6</span>
-      <span class="proof-label">connected systems</span>
+      <span class="proof-num">37k</span>
+      <span class="proof-label">Reddit views on the method behind this</span>
     </div>
     <div class="proof-item">
-      <span class="proof-num">10</span>
-      <span class="proof-label">skills that get you hired</span>
+      <span class="proof-num">7yr</span>
+      <span class="proof-label">Built by a working data analyst</span>
+    </div>
+    <div class="proof-item">
+      <span class="proof-num">6</span>
+      <span class="proof-label">connected systems in one workspace</span>
     </div>
     <div class="proof-item">
       <span class="proof-num">€0</span>
-      <span class="proof-label">to start</span>
-    </div>
-    <div class="proof-item">
-      <span class="proof-num">€49.99</span>
-      <span class="proof-label">full system, once</span>
+      <span class="proof-label">to start — no credit card needed</span>
     </div>
   </div>
 </div>
 </div>
 
-<!-- PROBLEM -->
-<div class="problem" id="problem">
-<div class="problem-inner">
-  <div class="section-label" style="color:rgba(255,255,255,0.35);">The problem</div>
-  <h2 class="section-title" style="color:var(--white);max-width:560px;">
-    You have been learning.<br>
-    <em style="color:#93C5FD;">But something is not clicking.</em>
-  </h2>
-  <div class="problem-grid reveal">
-    <div class="problem-card">
-      <div class="problem-num">01</div>
-      <div class="problem-title">Scattered learning</div>
-      <div class="problem-body">Course after course, no clear sense of whether what you're learning is what hiring managers actually test for. Progress feels invisible.</div>
+<!-- ══ PAIN ══ -->
+<div class="pain-section" id="pain">
+<div class="pain-inner">
+  <div class="section-tag">This is for you if...</div>
+  <h2 class="section-h">You keep learning.<br><em>But still don't feel hireable.</em></h2>
+  <p class="section-p">The problem is not effort. Most learning paths teach tools — not how to use them to solve real business problems, build proof, or communicate your work to the people making hiring decisions.</p>
+
+  <div class="pain-grid reveal">
+    <div class="pain-card">
+      <div class="pain-icon">📄</div>
+      <div class="pain-title">You feel invisible in a sea of identical CVs</div>
+      <div class="pain-body">Same SQL certificate. Same Power BI project. Same Airbnb dataset everyone else used. You have the same generic proof as thousands of other applicants and no way to stand out.</div>
+      <div class="pain-quote">"I've finished 4 courses and still don't know if I'm actually hireable."</div>
     </div>
-    <div class="problem-card">
-      <div class="problem-num">02</div>
-      <div class="problem-title">Work that isn't visible</div>
-      <div class="problem-body">You have skills, maybe some projects — but no structure connecting them into something a recruiter can read and understand in 15 seconds.</div>
+    <div class="pain-card">
+      <div class="pain-icon">🧩</div>
+      <div class="pain-title">You know the tools. You can't explain why they matter.</div>
+      <div class="pain-body">You can write a SQL query. You can build a dashboard. But when a hiring manager asks "what business problem did this solve?" — you freeze. The gap between technical skill and business thinking is where most analysts get stuck.</div>
+      <div class="pain-quote">"I can do the analysis. I just don't know how to explain it to non-technical people."</div>
     </div>
-    <div class="problem-card">
-      <div class="problem-num">03</div>
-      <div class="problem-title">Applications going nowhere</div>
-      <div class="problem-body">The problem was never your skills. It was presenting them the wrong way, to the wrong people, without a system to learn from each attempt.</div>
+    <div class="pain-card">
+      <div class="pain-icon">🤖</div>
+      <div class="pain-title">AI is changing everything and you don't know where you stand</div>
+      <div class="pain-body">Budgets are being cut. Roles are merging. You're learning skills that might already be automated — but you don't know which ones to focus on, or how to use AI professionally instead of carelessly.</div>
+      <div class="pain-quote">"I'm scared I'm preparing for a role that won't exist in 2 years."</div>
+    </div>
+    <div class="pain-card">
+      <div class="pain-icon">🧭</div>
+      <div class="pain-title">No mentor. No honest feedback. Building in the dark.</div>
+      <div class="pain-body">No senior analyst to review your work. No way to know if your portfolio would actually impress a recruiter — or just look like another tutorial you followed. You're guessing whether what you're building is what companies want.</div>
+      <div class="pain-quote">"I don't know anyone in the field. I have no idea if my portfolio is good enough."</div>
     </div>
   </div>
 </div>
 </div>
 
-<!-- SCENARIO -->
-<div style="background:var(--white);">
-<section>
-  <div class="section-label">What changes</div>
-  <h2 class="section-title">The answer that <em>changes the room.</em></h2>
-  <p class="section-body">Every skill in Data Analyst Blueprint teaches you not just the technique — but the business thinking behind it. Here is what that looks like in practice.</p>
+<!-- ══ MECHANISM ══ -->
+<div style="background:var(--white)">
+<div class="mechanism reveal">
+  <div class="section-tag blue">Why most approaches don't work</div>
+  <h2 class="section-h dark">It is not a content problem.<br><em>It is a system problem.</em></h2>
+  <p class="section-p dark">Courses teach skills in isolation. The Analyst Blueprint connects them — learning to practice, practice to projects, projects to portfolio, portfolio to job search. Nothing exists alone. Nothing gets lost.</p>
+
+  <div class="mech-compare">
+    <div class="mech-header">
+      <div class="mech-header-cell">Without the Blueprint</div>
+      <div class="mech-header-cell">With the Blueprint</div>
+    </div>
+    <div class="mech-row">
+      <div class="mech-col bad">Learn tools with no clear direction or order</div>
+      <div class="mech-col good">Learn skills tied to your target role, in order</div>
+    </div>
+    <div class="mech-row">
+      <div class="mech-col bad">Build generic dataset projects nobody notices</div>
+      <div class="mech-col good">Build projects that answer real business questions</div>
+    </div>
+    <div class="mech-row">
+      <div class="mech-col bad">Portfolio exists but doesn't tell a story</div>
+      <div class="mech-col good">Portfolio shows judgment, not just execution</div>
+    </div>
+    <div class="mech-row">
+      <div class="mech-col bad">Use AI as a shortcut — get caught in interviews</div>
+      <div class="mech-col good">Use AI professionally with a verification system</div>
+    </div>
+    <div class="mech-row">
+      <div class="mech-col bad">Apply and hope — no way to improve each time</div>
+      <div class="mech-col good">Track, reflect, iterate — get better with every attempt</div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ══ SCENARIO ══ -->
+<div style="background:var(--white)">
+<div class="scenario-section">
+  <div class="section-tag blue">What business-ready looks like in practice</div>
+  <h2 class="section-h dark">The answer that <em>changes the room.</em></h2>
+  <p class="section-p dark">Every skill in the Blueprint teaches the business thinking behind the technique — not just how to calculate a metric, but what it means for a decision. Here is one example.</p>
 
   <div class="scenario reveal">
-    <div class="scenario-label">Real scenario — Business Metrics & KPIs</div>
+    <div class="scenario-label">Real scenario — Business Metrics & KPIs skill page</div>
     <div class="scenario-weak">Weak answer: "CAC is up this quarter."</div>
     <div class="scenario-strong">
       "Our LTV is €180 and CAC is €95 — a 1.9 ratio, below the healthy threshold of 3.<br><br>
       At current CAC, customers need to place 2.3 orders to break even. Our repeat purchase rate is 1.6.<br><br>
       We are acquiring customers at a loss."
     </div>
-    <div class="scenario-result">That answer changed the marketing budget allocation for the next quarter. Knowing the metric is the technical skill. Knowing what it means for the business is what gets you into those rooms.</div>
-  </div>
-
-  <div class="what-grid reveal" style="margin-top:64px;" id="what">
-    <div class="what-card">
-      <div class="what-tag">Every skill includes</div>
-      <div class="what-icon">📖</div>
-      <div class="what-title">Exercise + practice</div>
-      <div class="what-body">Active recall exercises built into every skill — not course quizzes, real business scenarios you work through from memory.</div>
-    </div>
-    <div class="what-card">
-      <div class="what-tag">Every skill includes</div>
-      <div class="what-icon">🎯</div>
-      <div class="what-title">Your takeaway</div>
-      <div class="what-body">What this skill gives you and how you use it day-to-day. So you always know why you are learning what you are learning.</div>
-    </div>
-    <div class="what-card">
-      <div class="what-tag">Every skill includes</div>
-      <div class="what-icon">🔗</div>
-      <div class="what-title">Linked resources</div>
-      <div class="what-body">The specific courses, tutorials, and references worth your time. No searching. No weeks lost on the wrong content.</div>
-    </div>
-    <div class="what-card">
-      <div class="what-tag">Every skill includes</div>
-      <div class="what-icon">💼</div>
-      <div class="what-title">Real scenario</div>
-      <div class="what-body">A business situation showing exactly how a professional analyst uses this skill in a meeting, a report, or a stakeholder conversation.</div>
-    </div>
-  </div>
-</section>
-</div>
-
-<!-- FREE KIT -->
-<div class="free-section" id="free">
-<div class="free-inner">
-  <div class="section-label" style="color:var(--gold);">Start here — it's free</div>
-  <h2 class="section-title" style="color:var(--ink);">Data Analyst Blueprint<br><em style="color:var(--gold);">Phase 1 & 2 Starter</em></h2>
-  <p class="section-body" style="color:var(--gold);opacity:0.8;">Not a summary. Not a checklist. The actual system — Phase 1 & 2 skills with exercises and a diagnostic — so you experience the quality before you decide.</p>
-
-  <div class="free-grid reveal">
-    <div class="free-includes">
-      <div class="free-item">
-        <div class="free-item-icon">→</div>
-        <div class="free-item-text">
-          <strong>The 10 skills that actually will make you hirable</strong>
-          In priority order. With a one-line reason why each one matters to a hiring manager.
-        </div>
-      </div>
-      <div class="free-item">
-        <div class="free-item-icon">→</div>
-        <div class="free-item-text">
-          <strong>The 5-question progress check</strong>
-          An honest read on whether you are building transferable skills or just completing courses.
-        </div>
-      </div>
-      <div class="free-item">
-        <div class="free-item-icon">→</div>
-        <div class="free-item-text">
-          <strong>The job-ready checklist</strong>
-          The specific things a hiring manager checks in the first 30 seconds — portfolio, CV, interview readiness.
-        </div>
-      </div>
-      <div class="free-item">
-        <div class="free-item-icon">→</div>
-        <div class="free-item-text">
-          <strong>The business thinking standard</strong>
-          The question that separates analysts from order-takers: can you say what decision your analysis supports?
-        </div>
-      </div>
-    </div>
-
-    <div class="free-cta-box">
-      <div class="free-price">Free — no credit card</div>
-      <div class="free-title">Data Analyst Blueprint<br>Starter</div>
-      <div class="free-desc">Use it before you open your next course. Use it before you submit your next application. The 10 minutes it takes will save you weeks.</div>
-      <a href="https://data-with-k.lemonsqueezy.com/checkout/buy/1e81d328-424d-4902-b4d0-3f1f91569d80" target="_blank" rel="noopener noreferrer" class="btn-gold">Download free guide →</a>
-      <div style="font-size:11px;color:var(--gold);opacity:0.6;margin-top:12px;font-family:'IBM Plex Mono',monospace;letter-spacing:0.06em;">PDF · Instant download · Free forever</div>
-    </div>
+    <div class="scenario-result">That answer changed the marketing budget allocation for the next quarter. Knowing the metric is the technical skill. Knowing what it means for the business is what gets you into those rooms — and keeps you there.</div>
   </div>
 </div>
 </div>
 
-<!-- PAID OS -->
-<div class="paid-section" id="os">
-<div class="paid-inner">
-  <div class="paid-header reveal">
-    <div>
-      <div class="paid-label">The full system</div>
-      <h2 class="paid-title">Data Analyst Blueprint</h2>
-      <p class="paid-sub">Not a course. Not a tracker. A complete Notion workflow that connects your learning, projects, portfolio, and job search — with AI tools and business thinking built into every step.</p>
-    </div>
-    <div class="price-box">
-      <div class="price-amount">€49.99</div>
-      <div class="price-note">one-time · yours to keep</div>
-      <a href="https://data-with-k.lemonsqueezy.com/checkout/buy/42714fbb-2e45-49a6-a171-7b6096028877" target="_blank" rel="noopener noreferrer" class="btn-white">Get instant access →</a>
-      <div style="font-size:10px;color:rgba(255,255,255,0.2);margin-top:12px;font-family:'IBM Plex Mono',monospace;letter-spacing:0.06em;">No subscription. No upsells.</div>
-    </div>
-  </div>
+<!-- ══ MODULES ══ -->
+<div class="modules-section" id="modules">
+<div class="modules-inner">
+  <div class="section-tag blue">What's inside</div>
+  <h2 class="section-h dark">Six systems. <em>Each one solves a specific problem.</em></h2>
+  <p class="section-p dark">Not a collection of templates. A connected operating system where every part feeds the next — learning builds projects, projects build portfolio, portfolio fuels job search.</p>
 
   <div class="modules-grid reveal">
-    <div class="module-card">
-      <div class="module-num">MODULE 01</div>
-      <div class="module-title">Learning Path</div>
-      <div class="module-body">Structured roadmap with linked resources, practice exercises, and business takeaways for every skill. Learn in order. Apply immediately.</div>
+    <div class="module-row">
+      <div class="mod-label">
+        <div class="mod-num">Module 01</div>
+        <div class="mod-name">Learning Path</div>
+      </div>
+      <div class="mod-pain">
+        <div class="mod-pain-label">Solves</div>
+        <div class="mod-pain-text">"I don't know what to learn or in what order"</div>
+      </div>
+      <div class="mod-solve">
+        <div class="mod-solve-label">How</div>
+        <div class="mod-solve-text">Every skill has an exercise, a linked resource, a business takeaway, and a real scenario showing how a professional uses it. Know what to learn next — and exactly why.</div>
+      </div>
     </div>
-    <div class="module-card">
-      <div class="module-num">MODULE 02</div>
-      <div class="module-title">AI Analyst Edge</div>
-      <div class="module-body">8 prompt templates, copilot integration guides, automation workflows, and a verification checklist system. Use AI professionally, not carelessly.</div>
+    <div class="module-row">
+      <div class="mod-label">
+        <div class="mod-num">Module 02</div>
+        <div class="mod-name">AI Analyst Edge</div>
+      </div>
+      <div class="mod-pain">
+        <div class="mod-pain-label">Solves</div>
+        <div class="mod-pain-text">"I use AI but I don't know if I can trust the output"</div>
+      </div>
+      <div class="mod-solve">
+        <div class="mod-solve-label">How</div>
+        <div class="mod-solve-text">8 prompt templates, copilot integration guides, and a full verification checklist system. Use AI the way professionals do — faster and credible, not faster and risky.</div>
+      </div>
     </div>
-    <div class="module-card">
-      <div class="module-num">MODULE 03</div>
-      <div class="module-title">Project Portfolio</div>
-      <div class="module-body">Every skill links to a project. Every project has structure. Portfolio grows automatically as you publish. GitHub + Notion templates included.</div>
+    <div class="module-row">
+      <div class="mod-label">
+        <div class="mod-num">Module 03</div>
+        <div class="mod-name">Project Portfolio</div>
+      </div>
+      <div class="mod-pain">
+        <div class="mod-pain-label">Solves</div>
+        <div class="mod-pain-text">"My projects don't feel strong enough to show anyone"</div>
+      </div>
+      <div class="mod-solve">
+        <div class="mod-solve-label">How</div>
+        <div class="mod-solve-text">A framework that turns every skill into a project. Built-in review scoring. GitHub and Notion publishing templates. Portfolio grows automatically as you build.</div>
+      </div>
     </div>
-    <div class="module-card">
-      <div class="module-num">MODULE 04</div>
-      <div class="module-title">Data Storytelling</div>
-      <div class="module-body">Storytelling templates and a project review system. Go from "I ran an analysis" to "I solved a business problem using data."</div>
+    <div class="module-row">
+      <div class="mod-label">
+        <div class="mod-num">Module 04</div>
+        <div class="mod-name">Data Storytelling</div>
+      </div>
+      <div class="mod-pain">
+        <div class="mod-pain-label">Solves</div>
+        <div class="mod-pain-text">"I can do the analysis but can't explain it clearly"</div>
+      </div>
+      <div class="mod-solve">
+        <div class="mod-solve-label">How</div>
+        <div class="mod-solve-text">Storytelling templates and a project review system. Go from "I ran an analysis" to "I solved a business problem using data" — the phrase that changes interviews.</div>
+      </div>
     </div>
-    <div class="module-card">
-      <div class="module-num">MODULE 05</div>
-      <div class="module-title">Interview Prep</div>
-      <div class="module-body">Job search built from the recruiter's perspective. Prepare each application the way a hiring manager reads it. Reflect after every rejection.</div>
+    <div class="module-row">
+      <div class="mod-label">
+        <div class="mod-num">Module 05</div>
+        <div class="mod-name">Interview Prep</div>
+      </div>
+      <div class="mod-pain">
+        <div class="mod-pain-label">Solves</div>
+        <div class="mod-pain-text">"I apply and get nothing back — I don't know why"</div>
+      </div>
+      <div class="mod-solve">
+        <div class="mod-solve-label">How</div>
+        <div class="mod-solve-text">Job search built from the recruiter's perspective. Prepare applications the way a hiring manager reads them. Track every attempt. Reflect after every rejection. Improve with data.</div>
+      </div>
     </div>
-    <div class="module-card">
-      <div class="module-num">MODULE 06</div>
-      <div class="module-title">Analyst Meta Skills & Habits</div>
-      <div class="module-body">Track the invisible skills that determine how fast you grow — problem framing, communication, consistency. The things no course teaches.</div>
+    <div class="module-row">
+      <div class="mod-label">
+        <div class="mod-num">Module 06</div>
+        <div class="mod-name">Analyst Meta Skills</div>
+      </div>
+      <div class="mod-pain">
+        <div class="mod-pain-label">Solves</div>
+        <div class="mod-pain-text">"I have technical skills but don't think like a real analyst yet"</div>
+      </div>
+      <div class="mod-solve">
+        <div class="mod-solve-label">How</div>
+        <div class="mod-solve-text">Track problem framing, communication, and consistency the same way you track technical skills. The habits that determine how fast you grow — made visible and measurable.</div>
+      </div>
     </div>
   </div>
+</div>
+</div>
+
+<!-- ══ SKILL PREVIEW ══ -->
+<div class="skill-preview-section">
+<div class="skill-preview-inner">
+  <div class="section-tag blue">A look inside every skill page</div>
+  <h2 class="section-h dark">Every skill teaches the <em>business thinking,</em> not just the technique.</h2>
+  <p class="section-p dark">Here is exactly what the Business Metrics & KPIs skill page looks like. Every skill in the Blueprint is built this way — no generic explanations, only applied business context.</p>
 
   <div class="skill-preview reveal">
-    <div class="skill-preview-label">Inside every skill — example: Business Metrics & KPIs</div>
+    <div class="skill-preview-label">Inside skill page — Business Metrics & KPIs</div>
     <div class="skill-row-preview">
-      <div>
-        <div class="skill-col-title">What this gives you</div>
+      <div class="skill-col">
+        <div class="skill-col-title">What this skill gives you</div>
         <div class="skill-col-body">The business fluency to participate in any commercial conversation as an equal — not as someone who needs things explained to them. Business metrics are the language of every meeting you will ever attend.</div>
+        <div class="skill-example">
+          <div class="skill-example-label">Day-to-day use</div>
+          <div class="skill-example-text">In every dashboard you build, every report you write, every meeting you attend — these metrics will come up. The analyst who can say "our LTV:CAC ratio is 2.1, which is below the healthy threshold of 3 — here is what is driving it" is the one who gets listened to.</div>
+        </div>
       </div>
-      <div>
+      <div class="skill-col">
         <div class="skill-col-title">Your exercise</div>
-        <div class="skill-col-body">Without Googling: write out 8 KPI definitions from memory. For each: plain English definition, the formula, what a bad number looks like, who in the company owns this metric. Score yourself honestly.</div>
+        <div class="skill-col-body">Without Googling: write out 8 KPI definitions entirely from memory. For each: (a) plain English definition, (b) the formula, (c) what a bad number looks like in e-commerce, (d) who in the company owns this metric. Score yourself honestly. Review only the ones you got wrong.</div>
+        <div class="skill-example">
+          <div class="skill-example-label">KPIs covered</div>
+          <div class="skill-example-text">Revenue, Gross Margin %, Customer Acquisition Cost, Customer Lifetime Value, Cart Abandonment Rate, Return Rate, Monthly Active Users, Churn Rate.</div>
+        </div>
       </div>
     </div>
   </div>
 </div>
 </div>
 
-<!-- OBJECTIONS -->
-<div style="background:var(--white);">
-<section>
-  <div class="section-label">Common questions</div>
-  <h2 class="section-title">Honest answers.</h2>
+<!-- ══ FREE VS PAID ══ -->
+<div class="compare-section" id="compare">
+<div class="compare-inner">
+  <div class="section-tag blue">Free vs paid</div>
+  <h2 class="section-h dark">Start free. <em>Upgrade when you're ready.</em></h2>
+  <p class="section-p dark">Free = understand where you are. Paid = become the analyst companies want to hire. No pressure to buy until you have seen the quality yourself.</p>
 
-  <div class="obj-grid reveal">
-    <div class="obj-row">
-      <div class="obj-q">Is this for complete beginners or people with some experience?</div>
-      <div class="obj-a">Both — but for different reasons. If you are a beginner, the structure tells you what to learn in what order and why. If you have experience, the system connects things you already know. The gap it closes is not knowledge — it is the architecture that turns knowledge into a career.</div>
+  <div class="compare-grid reveal">
+    <div class="compare-col">
+      <div class="compare-tag free">Free · No credit card</div>
+      <div class="compare-price free">€0</div>
+      <div class="compare-name free">Phase 1 Starter</div>
+      <div class="compare-desc free">Self-assessment, foundational skills, and early clarity. Experience the actual system before committing to anything.</div>
+      <div class="compare-items">
+        <div class="compare-item free-item">Phase 1 skills with linked resources</div>
+        <div class="compare-item free-item">Real practice exercises per skill</div>
+        <div class="compare-item free-item">Business takeaway for every skill</div>
+        <div class="compare-item free-item">3-question honest progress diagnostic</div>
+        <div class="compare-item free-item">See the system working before you pay</div>
+      </div>
+      <div class="compare-cta">
+        <a href="https://data-with-k.lemonsqueezy.com/checkout/buy/1e81d328-424d-4902-b4d0-3f1f91569d80" target="_blank" rel="noopener noreferrer" class="btn-gold">Download Phase 1 free →</a>
+        <div style="font-size:10px;color:var(--gold);opacity:0.6;margin-top:10px;font-family:'IBM Plex Mono',monospace;letter-spacing:0.06em;text-align:center;">Instant access · Free forever</div>
+      </div>
     </div>
-    <div class="obj-row">
-      <div class="obj-q">Do I need to use Notion already?</div>
-      <div class="obj-a">No. The template is built for someone who has never used Notion professionally. The first 7 days guide walks you through setup step by step, one action per day. Most users are running the system within a week.</div>
-    </div>
-    <div class="obj-row">
-      <div class="obj-q">How is this different from a course?</div>
-      <div class="obj-a">A course gives you content. The Blueprint gives you a system. The difference is that every part connects — learning links to projects, projects link to portfolio, portfolio links to job search. Nothing exists in isolation. Nothing gets lost.</div>
-    </div>
-    <div class="obj-row">
-      <div class="obj-q">What if I buy it and don't use it?</div>
-      <div class="obj-a">Start with the free edition. Work through all three pages honestly. If the quality of the free guide makes you want more — that is the signal. The paid OS is built to the same standard throughout.</div>
+
+    <div class="compare-col paid">
+      <div class="compare-tag paid">Full system · One-time</div>
+      <div class="compare-price paid">€49.99</div>
+      <div class="compare-name paid">Analyst Blueprint OS</div>
+      <div class="compare-desc paid">Full skill system, deeper exercises, linked projects, AI workflows, storytelling support, interview prep, and job-ready proof. Everything connected.</div>
+      <div class="compare-items">
+        <div class="compare-item paid-item">All phases — complete learning path</div>
+        <div class="compare-item paid-item">Project Portfolio — build proof-of-skill</div>
+        <div class="compare-item paid-item">AI Analyst Edge — use AI professionally</div>
+        <div class="compare-item paid-item">Data Storytelling — communicate insights</div>
+        <div class="compare-item paid-item">Interview Prep — apply like a data analyst</div>
+        <div class="compare-item paid-item">Analyst Meta Skills & Habits tracker</div>
+        <div class="compare-item paid-item">First 7 Days onboarding guide included</div>
+        <div class="compare-item paid-item">Everything connected through databases</div>
+      </div>
+      <div class="compare-cta">
+        <a href="https://data-with-k.lemonsqueezy.com/checkout/buy/42714fbb-2e45-49a6-a171-7b6096028877" target="_blank" rel="noopener noreferrer" class="btn-white">Get the full Blueprint — €49.99 →</a>
+        <div class="compare-note">No subscription · Yours to keep · Instant access</div>
+      </div>
     </div>
   </div>
-</section>
+</div>
 </div>
 
-<!-- FINAL CTA -->
+<!-- ══ FAQ ══ -->
+<div class="faq-section">
+<div class="faq-inner">
+  <div class="section-tag blue">Common questions</div>
+  <h2 class="section-h dark">Honest <em>answers.</em></h2>
+
+  <div class="faq-grid reveal">
+    <div class="faq-row">
+      <div class="faq-q" onclick="this.parentElement.classList.toggle('open');this.querySelector('.faq-toggle').textContent=this.parentElement.classList.contains('open')?'−':'+'">
+        <div class="faq-q-text">Is this for complete beginners or people with some experience?</div>
+        <div class="faq-toggle">+</div>
+      </div>
+      <div class="faq-a">Both — but for different reasons. If you are a beginner, the structure tells you what to learn, in what order, and why — so you stop opening five courses at once. If you have experience, the system connects things you already know. The gap it closes is not knowledge — it is the architecture that turns knowledge into hireable proof.</div>
+    </div>
+    <div class="faq-row">
+      <div class="faq-q" onclick="this.parentElement.classList.toggle('open');this.querySelector('.faq-toggle').textContent=this.parentElement.classList.contains('open')?'−':'+'">
+        <div class="faq-q-text">Will AI make the data analyst role obsolete?</div>
+        <div class="faq-toggle">+</div>
+      </div>
+      <div class="faq-a">AI replaces the mechanical parts — basic queries, routine reports. It does not replace judgment, business thinking, stakeholder communication, or the ability to frame the right question before touching the data. The Blueprint is built specifically around those skills — the ones that make you more valuable because of AI, not replaceable by it.</div>
+    </div>
+    <div class="faq-row">
+      <div class="faq-q" onclick="this.parentElement.classList.toggle('open');this.querySelector('.faq-toggle').textContent=this.parentElement.classList.contains('open')?'−':'+'">
+        <div class="faq-q-text">Do I need to know Notion already?</div>
+        <div class="faq-toggle">+</div>
+      </div>
+      <div class="faq-a">No. The template includes a First 7 Days onboarding guide — one action per day, in the right order, until the system is running. Most users are fully set up within a week with no prior Notion experience.</div>
+    </div>
+    <div class="faq-row">
+      <div class="faq-q" onclick="this.parentElement.classList.toggle('open');this.querySelector('.faq-toggle').textContent=this.parentElement.classList.contains('open')?'−':'+'">
+        <div class="faq-q-text">How is this different from a data analytics course?</div>
+        <div class="faq-toggle">+</div>
+      </div>
+      <div class="faq-a">A course gives you content. The Blueprint gives you a system. Every skill you learn links to a project. Every project links to a portfolio. Every portfolio item links to job applications. You reflect after every rejection. Everything compounds. A course ends when you finish it. This system grows with you until you get hired.</div>
+    </div>
+    <div class="faq-row">
+      <div class="faq-q" onclick="this.parentElement.classList.toggle('open');this.querySelector('.faq-toggle').textContent=this.parentElement.classList.contains('open')?'−':'+'">
+        <div class="faq-q-text">Why not just use free YouTube tutorials and Reddit posts?</div>
+        <div class="faq-toggle">+</div>
+      </div>
+      <div class="faq-a">Free resources teach skills in isolation. They do not connect them. You can spend 12 months on YouTube and still have no system linking what you learn to projects, no framework for building portfolio proof, and no structured approach to job search. The Blueprint is not content — it is the connective tissue that makes content useful.</div>
+    </div>
+    <div class="faq-row">
+      <div class="faq-q" onclick="this.parentElement.classList.toggle('open');this.querySelector('.faq-toggle').textContent=this.parentElement.classList.contains('open')?'−':'+'">
+        <div class="faq-q-text">What if I try it and it is not for me?</div>
+        <div class="faq-toggle">+</div>
+      </div>
+      <div class="faq-a">Start with Phase 1 — it is completely free. Work through the exercises and the diagnostic honestly. If the quality of the free phase makes you want more, that is your signal. The paid system is built to the same standard throughout. If Phase 1 does not resonate, you have lost nothing.</div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ══ FINAL CTA ══ -->
 <div class="final-cta">
 <div class="final-inner reveal">
-  <h2 class="final-title">One system.<br><em>One clear path.</em></h2>
-  <p class="final-body">Six months from now, one of two things will be true. You will have a system that has moved you measurably closer to the analyst role you want — or you will be in roughly the same place, having learned more things with no clearer sense of whether any of it is working.</p>
+  <h2 class="final-title">Stop collecting skills.<br><em>Start building proof.</em></h2>
+  <p class="final-body">Six months from now you could have a connected system that has turned your learning into projects, your projects into portfolio proof, and your portfolio into job offers. Or you could be in the same place — more courses completed, still not sure if any of it is working.</p>
   <div class="final-actions">
-    <a href="https://data-with-k.lemonsqueezy.com/checkout/buy/42714fbb-2e45-49a6-a171-7b6096028877" class="btn-primary" style="width:100%;max-width:340px;justify-content:center;">Get the Analyst Blueprint — €49.99</a>
-    <a href="#free" class="btn-secondary" style="width:100%;max-width:340px;justify-content:center;border-color:rgba(255,255,255,0.2);color:rgba(255,255,255,0.6);">Start with the free edition</a>
+    <a href="https://data-with-k.lemonsqueezy.com/checkout/buy/42714fbb-2e45-49a6-a171-7b6096028877" target="_blank" rel="noopener noreferrer" class="btn-primary" style="width:100%;max-width:360px;justify-content:center;">Get the Analyst Blueprint — €49.99 →</a>
+    <a href="https://data-with-k.lemonsqueezy.com/checkout/buy/1e81d328-424d-4902-b4d0-3f1f91569d80" target="_blank" rel="noopener noreferrer" class="btn-secondary" style="width:100%;max-width:360px;justify-content:center;border-color:rgba(255,255,255,0.2);color:rgba(255,255,255,0.6);">Start with Phase 1 — free</a>
   </div>
   <div class="final-note">€49.99 · one-time · no subscription · yours to keep</div>
 </div>
@@ -1059,8 +987,8 @@
 <footer>
   <div class="footer-brand"><span>Analyst Blueprint</span> · data_with_k · Threads @data_with_k</div>
   <ul class="footer-links">
-    <li><a href="#free">Free edition</a></li>
-    <li><a href="#os">Full Version</a></li>
+    <li><a href="#compare">Free Phase 1</a></li>
+    <li><a href="#compare">Full OS</a></li>
     <li><a href="https://threads.net/@data_with_k" target="_blank" rel="noopener noreferrer">Threads</a></li>
     <li><a href="privacy-policy.html" target="_blank" rel="noopener noreferrer">Privacy Policy</a></li>
     <li><a href="terms-of-service.html" target="_blank" rel="noopener noreferrer">Legal Mentions</a></li>
@@ -1068,15 +996,11 @@
 </footer>
 
 <script>
-  // Scroll reveal
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-      }
+      if (entry.isIntersecting) entry.target.classList.add('visible');
     });
-  }, { threshold: 0.12 });
-
+  }, { threshold: 0.1 });
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 </script>
 
